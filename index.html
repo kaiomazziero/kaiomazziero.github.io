@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Agents — Study Roadmap</title>
-<meta name="description" content="A shareable study roadmap for working with AI agents: fundamentals, prompt engineering, evaluation, handoff, feedback loops, orchestration, and metrics. Study material, tips, free resources, and quizzes. Progress saved in your browser.">
+<meta name="description" content="A shareable study roadmap for working with AI agents. Tick off concepts as you study them, quizzes per topic, free resources, and a NEW badge on anything added since your last visit. Progress saved in your browser.">
 <style>
   :root {
     --bg: #0a0e16;
@@ -21,6 +21,7 @@
     --green: #4ade80;
     --red: #f87171;
     --yellow: #fbbf24;
+    --check-ink: #06281c;
     --shadow: 0 8px 30px rgba(0,0,0,.4);
     --radius: 14px;
     --maxw: 920px;
@@ -38,6 +39,7 @@
     --text: #1a2030;
     --text-dim: #56627a;
     --text-faint: #8c97aa;
+    --check-ink: #06281c;
     --shadow: 0 8px 30px rgba(20,30,60,.08);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -90,7 +92,7 @@
     -webkit-text-fill-color: transparent;
   }
   .byline { font-family: var(--mono); font-size: 13px; color: var(--accent); letter-spacing: .01em; margin-bottom: 16px; display: inline-flex; align-items: center; gap: 6px; }
-  .lede { color: var(--text-dim); font-size: 17px; max-width: 660px; }
+  .lede { color: var(--text-dim); font-size: 17px; max-width: 680px; }
 
   .toolbar {
     display: flex; gap: 10px; flex-wrap: wrap;
@@ -110,6 +112,9 @@
   }
   .btn:hover { background: var(--bg-hover); border-color: var(--text-faint); }
   .btn.danger:hover { border-color: var(--red); color: var(--red); }
+  .btn.accent { border-color: rgba(110,231,183,.45); color: var(--accent); }
+  .btn.accent:hover { background: rgba(110,231,183,.08); border-color: var(--accent); }
+  .btn[hidden] { display: none; }
 
   .progress-bar-wrap { margin: 26px 0 6px; }
   .progress-meta { display: flex; justify-content: space-between; font-size: 13px; color: var(--text-dim); margin-bottom: 8px; font-family: var(--mono); }
@@ -123,6 +128,9 @@
   .dot.green { background: var(--green); box-shadow: 0 0 8px rgba(74,222,128,.5); }
   .dot.red { background: var(--red); box-shadow: 0 0 8px rgba(248,113,113,.5); }
   .dot.yellow { background: var(--yellow); box-shadow: 0 0 8px rgba(251,191,36,.5); }
+  .dot.purple { background: #a78bfa; box-shadow: 0 0 8px rgba(167,139,250,.5); }
+  .hint-line { font-size: 12.5px; color: var(--text-faint); margin-top: 14px; }
+  .hint-line .badge-new { margin: 0 2px; }
 
   /* Section title */
   .section-label {
@@ -163,6 +171,7 @@
     display: flex; align-items: center; gap: 10px;
   }
   .topic-title .sub { font-size: 13px; color: var(--text-dim); margin-top: 2px; }
+  .topic-meta { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
   .chip {
     font-family: var(--mono); font-size: 10px; letter-spacing: .06em;
     text-transform: uppercase; padding: 3px 8px; border-radius: 6px;
@@ -171,6 +180,9 @@
   .chip.green { color: var(--green); border-color: rgba(74,222,128,.4); }
   .chip.red { color: var(--red); border-color: rgba(248,113,113,.4); }
   .chip.yellow { color: var(--yellow); border-color: rgba(251,191,36,.4); }
+  .chip.purple { color: #a78bfa; border-color: rgba(167,139,250,.4); }
+  .chip-count { font-family: var(--mono); font-size: 10px; color: var(--text-faint); border: 1px solid var(--border); border-radius: 6px; padding: 3px 7px; white-space: nowrap; }
+  .topic.done .chip-count { color: var(--accent); border-color: rgba(110,231,183,.4); }
   .caret { color: var(--text-faint); transition: transform .25s; flex-shrink: 0; }
   .topic.open .caret { transform: rotate(90deg); }
 
@@ -186,29 +198,30 @@
     text-transform: uppercase; color: var(--accent);
     margin: 22px 0 10px;
   }
+  .block-label .bl-hint { text-transform: none; letter-spacing: 0; color: var(--text-faint); font-weight: 400; }
   .topic-body p { color: var(--text-dim); margin-bottom: 12px; font-size: 14.5px; }
-  .topic-body ul.points { list-style: none; margin: 0 0 8px; }
-  .topic-body ul.points li {
-    position: relative; padding-left: 20px; margin-bottom: 8px;
-    color: var(--text-dim); font-size: 14px;
-  }
-  .topic-body ul.points li::before {
-    content: "▸"; position: absolute; left: 0; color: var(--accent-2);
-  }
   .topic-body strong { color: var(--text); font-weight: 600; }
-  code.inline {
-    font-family: var(--mono); font-size: 12.5px;
-    background: var(--bg); border: 1px solid var(--border);
-    padding: 1px 6px; border-radius: 5px; color: var(--accent-2);
-  }
 
-  /* Study tips */
-  ul.tip-list { list-style: none; margin: 0 0 8px; }
-  ul.tip-list li {
-    border-left: 2px solid rgba(110,231,183,.45);
-    padding: 2px 0 2px 14px; margin-bottom: 10px;
-    color: var(--text-dim); font-size: 14px;
-  }
+  /* Study checklist */
+  .study-list { margin: 0 0 4px; }
+  .study-item { display: flex; align-items: flex-start; gap: 11px; padding: 7px 8px; border-radius: 9px; cursor: pointer; transition: background .14s; }
+  .study-item:hover { background: var(--bg-hover); }
+  .study-item input.item-cb { position: absolute; opacity: 0; width: 0; height: 0; }
+  .study-item .checkbox { width: 19px; height: 19px; border-radius: 6px; border: 1.5px solid var(--border); display: grid; place-items: center; transition: .15s; flex-shrink: 0; margin-top: 2px; color: var(--check-ink); }
+  .study-item input:checked + .checkbox { background: var(--accent); border-color: var(--accent); }
+  .study-item .checkbox svg { opacity: 0; transition: .15s; }
+  .study-item input:checked + .checkbox svg { opacity: 1; }
+  .study-item input:focus-visible + .checkbox { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+  .study-item .item-text { font-size: 14px; color: var(--text-dim); }
+  .study-item.done .item-text { color: var(--text-faint); }
+  .study-item.done .item-text strong { color: var(--text-dim); }
+  .mark-all-wrap { margin: 6px 0 2px; padding-left: 8px; }
+  .btn-mini { background: transparent; border: none; color: var(--text-faint); font-family: var(--body); font-size: 12.5px; cursor: pointer; padding: 4px 0; text-decoration: underline; text-underline-offset: 3px; transition: color .14s; }
+  .btn-mini:hover { color: var(--accent-2); }
+
+  /* NEW badge */
+  .badge-new { display: inline-block; background: var(--accent); color: var(--check-ink); font-family: var(--mono); font-size: 9px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 2px 6px; border-radius: 5px; vertical-align: middle; }
+  .header-new[hidden] { display: none; }
 
   /* Where to study */
   .res-mini { font-size: 11px; color: var(--text-faint); text-transform: uppercase; letter-spacing: .08em; margin: 4px 0 8px; font-family: var(--mono); }
@@ -226,6 +239,14 @@
   .free-links { display: flex; flex-direction: column; gap: 2px; }
   .free-link { color: var(--text-dim); font-size: 14px; text-decoration: none; padding: 4px 0; transition: .14s; }
   .free-link:hover { color: var(--accent-2); padding-left: 4px; }
+
+  /* Study tips */
+  ul.tip-list { list-style: none; margin: 0 0 8px; }
+  ul.tip-list li {
+    border-left: 2px solid rgba(110,231,183,.45);
+    padding: 2px 0 2px 14px; margin-bottom: 10px;
+    color: var(--text-dim); font-size: 14px;
+  }
 
   /* Quiz */
   .take-quiz { margin-top: 22px; border-color: rgba(110,231,183,.4); color: var(--accent); }
@@ -260,24 +281,6 @@
   }
   .retry-btn:hover { background: rgba(127,127,127,.12); }
 
-  /* Mark done */
-  .mark-done {
-    margin-top: 22px;
-    display: inline-flex; align-items: center; gap: 9px;
-    font-size: 14px; color: var(--text-dim); cursor: pointer; user-select: none;
-  }
-  .mark-done input { display: none; }
-  .checkbox {
-    width: 20px; height: 20px; border-radius: 6px;
-    border: 1.5px solid var(--border); display: grid; place-items: center;
-    transition: .15s; flex-shrink: 0;
-  }
-  .mark-done input:checked + .checkbox {
-    background: var(--accent); border-color: var(--accent);
-  }
-  .checkbox svg { opacity: 0; transition: .15s; }
-  .mark-done input:checked + .checkbox svg { opacity: 1; }
-
   /* FAQ / resources */
   .panel {
     background: var(--bg-card); border: 1px solid var(--border);
@@ -301,7 +304,34 @@
   footer { border-top: 1px solid var(--border); margin-top: 56px; padding: 28px 0; color: var(--text-faint); font-size: 13px; text-align: center; font-family: var(--mono); }
 
   :focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; border-radius: 6px; }
-  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+  /* Changelog modal */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(5,8,14,.66); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 50; animation: clfade .2s ease; }
+  .modal-overlay[hidden] { display: none; }
+  @keyframes clfade { from { opacity: 0; } to { opacity: 1; } }
+  .modal-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); max-width: 540px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 26px 26px 22px; position: relative; animation: clpop .22s ease; }
+  @keyframes clpop { from { transform: translateY(8px); opacity: 0; } to { transform: none; opacity: 1; } }
+  .modal-close { position: absolute; top: 12px; right: 14px; background: transparent; border: none; color: var(--text-faint); font-size: 26px; line-height: 1; cursor: pointer; padding: 4px 8px; border-radius: 6px; }
+  .modal-close:hover { color: var(--text); background: var(--bg-hover); }
+  .modal-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .modal-title { font-family: var(--display); font-size: 22px; font-weight: 700; letter-spacing: -.01em; margin-bottom: 16px; }
+  .modal-title span { color: var(--text-faint); font-weight: 500; font-size: 16px; }
+  .cl-entry { border-top: 1px solid var(--border-soft); padding: 14px 0; }
+  .cl-entry:first-child { border-top: none; padding-top: 0; }
+  .cl-ver { display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px; }
+  .cl-ver b { font-family: var(--display); font-size: 15px; }
+  .cl-ver .cl-date { font-family: var(--mono); font-size: 11px; color: var(--text-faint); }
+  .cl-ver .cl-latest { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: .06em; background: var(--accent); color: var(--check-ink); padding: 2px 6px; border-radius: 5px; }
+  .cl-group { margin: 8px 0 4px; }
+  .cl-group .cl-tag { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-2); }
+  .cl-group.ui .cl-tag { color: #a78bfa; }
+  .cl-list { list-style: none; margin: 6px 0 0; }
+  .cl-list li { position: relative; padding-left: 18px; margin-bottom: 6px; color: var(--text-dim); font-size: 13.5px; }
+  .cl-list li::before { content: "+"; position: absolute; left: 0; color: var(--accent); font-family: var(--mono); }
+  .modal-got { margin-top: 18px; width: 100%; justify-content: center; }
+  .ver-link { background: transparent; border: none; color: var(--text-faint); font-family: var(--mono); font-size: 13px; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; padding: 0; }
+  .ver-link:hover { color: var(--accent-2); }
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -312,20 +342,21 @@
 <header>
   <div class="wrap hero">
     <div class="eyebrow">
-      <span>7 topics</span><span>·</span><span>21 quiz questions</span><span>·</span><span>progress saved in your browser</span>
+      <span>10 topics</span><span>·</span><span>90 concepts to tick off</span><span>·</span><span>30 quiz questions</span><span>·</span><span>progress saved in your browser</span>
     </div>
     <h1>AI Agents <span class="grad">Study Roadmap</span></h1>
     <div class="byline">Made by Kaio for the CS team, with much care 💚</div>
-    <p class="lede">From building the mental model to measuring agents in production. Each topic has study material, study tips, free places to learn it, and a short quiz. Share the link — everyone who opens it keeps their own progress, saved locally in their browser.</p>
+    <p class="lede">From building the mental model to measuring agents in production. Tick off each concept as you study it, take a quiz per topic, and follow the free resources. Anything added since your last visit shows up marked NEW. Share the link — everyone keeps their own progress, saved locally in their browser.</p>
 
     <div class="toolbar">
       <button class="btn" id="theme-toggle">🌙 <span id="theme-label">Dark</span></button>
       <button class="btn" id="expand-all">⬇ Expand all</button>
+      <button class="btn accent" id="dismiss-new" hidden>✓ Mark all as seen</button>
       <button class="btn danger" id="reset">🗑️ Reset progress</button>
     </div>
 
     <div class="progress-bar-wrap">
-      <div class="progress-meta"><span id="progress-text">0 / 7 topics studied</span><span id="progress-pct">0%</span></div>
+      <div class="progress-meta"><span id="progress-text">0 / 90 concepts studied</span><span id="progress-pct">0%</span></div>
       <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
     </div>
 
@@ -334,6 +365,7 @@
       <span><i class="dot yellow"></i> Intermediate</span>
       <span><i class="dot red"></i> Advanced</span>
     </div>
+    <div class="hint-line">Tick off concepts as you study them. <span class="badge-new">NEW</span> marks anything added since your last visit — it clears once you open that topic.</div>
   </div>
 </header>
 
@@ -346,10 +378,11 @@
   <div class="panel">
     <h3>❓ FAQ</h3>
     <details><summary>Do I need to do the topics in order?</summary><p>Mostly yes. Fundamentals and Prompt Engineering are the base everything builds on. Handoff, Feedback Loops, and Orchestration assume you already understand how a single agent behaves and how to evaluate it. The colored dots show the rough difficulty climb.</p></details>
-    <details><summary>Where do I actually learn each topic?</summary><p>Inside every topic there's a "Where to study" block with one-click YouTube and Google searches (these stay current automatically) plus a short list of free resources — official docs, guides, and open-source tools. Open a topic and scroll to it.</p></details>
-    <details><summary>How is my progress saved, and can I share this?</summary><p>Yes — share the link freely. Progress is stored in each visitor's own browser via localStorage, so everyone who opens the page keeps their own checkmarks and quiz results on their own device. No account, no server. Clearing browser data or hitting "Reset progress" wipes it.</p></details>
-    <details><summary>How do the quizzes work?</summary><p>Each topic has a "Take Quiz" button that opens a short quiz. Click an option to lock in an answer. After the last question you'll see your score — you need 80% to pass. Hit ↻ Retry to try again as many times as you want.</p></details>
-    <details><summary>Do I need a specific model or API?</summary><p>No. The concepts apply to any LLM-based agent. To try things hands-on, any chat model with an API works — or mock the responses if you just want to practice the architecture.</p></details>
+    <details><summary>How do the checkmarks work?</summary><p>Under "What to study," tick off each concept as you learn it. The count on each topic (e.g. 5/9) and the overall bar update as you go, and a topic turns green when you've checked everything in it. Use "Mark all as studied" to tick a whole topic at once.</p></details>
+    <details><summary>What does the NEW badge mean?</summary><p>It flags anything added since your last visit — a new topic, a new concept, or a new resource. It's worked out automatically per person from what you saw before, so you never need to be told what changed. Opening the topic clears its NEW marks, or use "Mark all as seen" to clear them all at once.</p></details>
+    <details><summary>If the page is updated, do I lose my progress?</summary><p>No. Your checkmarks live in your browser and are keyed to each item's stable ID, not its position — so the author can add, reorder, or expand content and republish freely without touching what you've saved. Only clearing your browser data or hitting "Reset progress" wipes it. (After an update you may need a hard refresh — Ctrl/Cmd+Shift+R — to see the newest version; that only affects what you see, not your saved progress.)</p></details>
+    <details><summary>How do the quizzes work?</summary><p>Each topic has a "Take Quiz" button that opens a short quiz. Click an option to lock in an answer. After the last question you'll see your score — you need 80% to pass. Hit ↻ Retry to go again as many times as you want.</p></details>
+    <details><summary>Can I share this, and do I need an API?</summary><p>Share the link freely — each visitor keeps their own progress on their own device, no account or server. The concepts apply to any LLM-based agent; to try things hands-on, any chat model with an API works, or mock the responses to practice the architecture.</p></details>
   </div>
 
   <div class="panel">
@@ -384,8 +417,18 @@
 </main>
 
 <footer>
-  AI Agents Roadmap · hosted on GitHub Pages · progress stored locally in your browser
+  AI Agents Roadmap · hosted on GitHub Pages · progress stored locally in your browser · <button class="ver-link" id="open-changelog" type="button">v1.2 — what's new</button>
 </footer>
+
+<div class="modal-overlay" id="changelog-modal" hidden>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="cl-title">
+    <button class="modal-close" id="changelog-close" type="button" aria-label="Close">×</button>
+    <div class="modal-eyebrow">What's new</div>
+    <h2 class="modal-title" id="cl-title">AI Agents Roadmap <span id="cl-version">v1.2</span></h2>
+    <div id="changelog-body"></div>
+    <button class="btn accent modal-got" id="changelog-got" type="button">Got it</button>
+  </div>
+</div>
 
 <script>
 const TOPICS = [
@@ -393,20 +436,18 @@ const TOPICS = [
     id: "fundamentals", level: "green", levelText: "Foundational",
     title: "AI Fundamentals",
     sub: "How LLMs and agents actually work under the hood",
-    study: {
-      intro: "Before building agents, build the mental model. An <strong>LLM</strong> predicts the next token; an <strong>agent</strong> wraps that model in a loop that can reason, call tools, and act on the result. Knowing the difference keeps you from blaming the model for what is really an architecture problem.",
-      points: [
-        "<strong>Tokens & context window:</strong> models read and write in tokens, and the context window is finite — system prompt, history, and tool outputs all compete for it.",
-        "<strong>System vs. user prompt:</strong> the system prompt sets persistent role and rules; user turns carry the task. The split is your main steering lever.",
-        "<strong>The agent loop:</strong> observe → decide → act → observe. The model produces a thought or a tool call, you run it, then feed the result back in.",
-        "<strong>Tools / function calling:</strong> giving a model structured actions (search, calculator, API call) is what turns a chatbot into an agent.",
-        "<strong>State vs. statelessness:</strong> the model itself is stateless between calls; any memory lives in what you pass in.",
-        "<strong>Temperature & sampling:</strong> controls how deterministic outputs are — low for tools and extraction, higher for ideation.",
-        "<strong>Hallucination:</strong> models produce confident, plausible text even when wrong. Treat outputs as drafts to verify, not facts.",
-        "<strong>Embeddings & retrieval (RAG):</strong> turning text into vectors so an agent can look up relevant context instead of relying only on the prompt.",
-        "<strong>Latency & streaming:</strong> responses arrive token by token; streaming improves perceived speed even when total time is unchanged."
-      ]
-    },
+    intro: "Before building agents, build the mental model. An <strong>LLM</strong> predicts the next token; an <strong>agent</strong> wraps that model in a loop that can reason, call tools, and act on the result. Knowing the difference keeps you from blaming the model for what is really an architecture problem.",
+    points: [
+      { id: "tokens", t: "<strong>Tokens & context window:</strong> models read and write in tokens, and the context window is finite — system prompt, history, and tool outputs all compete for it." },
+      { id: "sys-user", t: "<strong>System vs. user prompt:</strong> the system prompt sets persistent role and rules; user turns carry the task. The split is your main steering lever." },
+      { id: "loop", t: "<strong>The agent loop:</strong> observe → decide → act → observe. The model produces a thought or a tool call, you run it, then feed the result back in." },
+      { id: "tools", t: "<strong>Tools / function calling:</strong> giving a model structured actions (search, calculator, API call) is what turns a chatbot into an agent." },
+      { id: "state", t: "<strong>State vs. statelessness:</strong> the model itself is stateless between calls; any memory lives in what you pass in." },
+      { id: "temperature", t: "<strong>Temperature & sampling:</strong> controls how deterministic outputs are — low for tools and extraction, higher for ideation." },
+      { id: "hallucination", t: "<strong>Hallucination:</strong> models produce confident, plausible text even when wrong. Treat outputs as drafts to verify, not facts." },
+      { id: "rag", t: "<strong>Embeddings & retrieval (RAG):</strong> turning text into vectors so an agent can look up relevant context instead of relying only on the prompt." },
+      { id: "latency", t: "<strong>Latency & streaming:</strong> responses arrive token by token; streaming improves perceived speed even when total time is unchanged." }
+    ],
     tips: [
       "Don't memorize the architecture math. Build a one-file agent loop by hand first, so the observe→act cycle becomes muscle memory before you touch a framework.",
       "When an agent misbehaves, ask: <strong>is this the model or my architecture?</strong> Most early bugs are context/loop problems, not the model being dumb.",
@@ -433,20 +474,18 @@ const TOPICS = [
     id: "prompt-eng", level: "green", levelText: "Foundational",
     title: "Prompt Engineering",
     sub: "Getting reliable behavior out of a model with words",
-    study: {
-      intro: "Prompting is the interface to an agent's behavior. Most 'the model is dumb' moments are really 'the prompt was ambiguous' moments. The goal is to make the desired behavior the path of least resistance.",
-      points: [
-        "<strong>Be specific about role, task, and format:</strong> tell the model who it is, what to do, and exactly how to return it.",
-        "<strong>Few-shot examples</strong> teach format and edge cases faster than paragraphs of instructions.",
-        "<strong>Chain-of-thought:</strong> asking for reasoning before the answer improves accuracy on multi-step tasks.",
-        "<strong>Structured output:</strong> request JSON (or a schema) when another system will consume the result.",
-        "<strong>Delimiters & structure:</strong> separate instruction from data with clear sections so the model never confuses the two.",
-        "<strong>Decomposition:</strong> break a hard task into smaller prompted steps instead of asking for everything at once.",
-        "<strong>Positive over negative:</strong> showing what TO do is more reliable than a list of what NOT to do.",
-        "<strong>Guardrails in the prompt:</strong> state what to do when the model is unsure, and what is out of scope.",
-        "<strong>Iterate against examples:</strong> change one thing at a time and test on the same inputs, or you won't know what helped."
-      ]
-    },
+    intro: "Prompting is the interface to an agent's behavior. Most 'the model is dumb' moments are really 'the prompt was ambiguous' moments. The goal is to make the desired behavior the path of least resistance.",
+    points: [
+      { id: "specific", t: "<strong>Be specific about role, task, and format:</strong> tell the model who it is, what to do, and exactly how to return it." },
+      { id: "fewshot", t: "<strong>Few-shot examples</strong> teach format and edge cases faster than paragraphs of instructions." },
+      { id: "cot", t: "<strong>Chain-of-thought:</strong> asking for reasoning before the answer improves accuracy on multi-step tasks." },
+      { id: "structured", t: "<strong>Structured output:</strong> request JSON (or a schema) when another system will consume the result." },
+      { id: "delimiters", t: "<strong>Delimiters & structure:</strong> separate instruction from data with clear sections so the model never confuses the two." },
+      { id: "decompose", t: "<strong>Decomposition:</strong> break a hard task into smaller prompted steps instead of asking for everything at once." },
+      { id: "positive", t: "<strong>Positive over negative:</strong> showing what TO do is more reliable than a list of what NOT to do." },
+      { id: "guardrails", t: "<strong>Guardrails in the prompt:</strong> state what to do when the model is unsure, and what is out of scope." },
+      { id: "iterate", t: "<strong>Iterate against examples:</strong> change one thing at a time and test on the same inputs, or you won't know what helped." }
+    ],
     tips: [
       "Keep a prompt changelog — when you tweak a prompt, note what changed and what it fixed, or you'll re-make the same mistakes.",
       "Steal format with examples, not adjectives: one good few-shot example beats three sentences of \"be concise and professional.\"",
@@ -474,20 +513,18 @@ const TOPICS = [
     id: "evaluating", level: "green", levelText: "Foundational",
     title: "Evaluating AI Responses",
     sub: "Knowing whether the output is actually good",
-    study: {
-      intro: "You can't improve what you don't measure. Evaluation is how you turn 'it feels better' into evidence. Without it, every prompt change is a guess and every deploy is a gamble.",
-      points: [
-        "<strong>Ground truth vs. reference-free:</strong> some tasks have a correct answer to check against; others need judgment-based scoring.",
-        "<strong>Metric types:</strong> exact match, semantic similarity, and rubric scores each fit different kinds of tasks.",
-        "<strong>LLM-as-judge:</strong> using a model to score outputs against a rubric — fast, but only as trustworthy as the rubric.",
-        "<strong>Pairwise comparison:</strong> asking \"is A or B better?\" is often more reliable than scoring a single answer 1–10.",
-        "<strong>Eval datasets:</strong> a fixed set of inputs + expected behavior you re-run on every change to catch regressions.",
-        "<strong>Regression testing:</strong> re-run the eval set on every change so a fix for one case doesn't silently break another.",
-        "<strong>Common failure modes:</strong> hallucination, instruction-following gaps, formatting breaks, and refusals.",
-        "<strong>Human review:</strong> sample real outputs regularly — automated scores miss failure modes you didn't anticipate.",
-        "<strong>Offline vs. online:</strong> test before shipping (offline) and watch real traffic after (online)."
-      ]
-    },
+    intro: "You can't improve what you don't measure. Evaluation is how you turn 'it feels better' into evidence. Without it, every prompt change is a guess and every deploy is a gamble.",
+    points: [
+      { id: "groundtruth", t: "<strong>Ground truth vs. reference-free:</strong> some tasks have a correct answer to check against; others need judgment-based scoring." },
+      { id: "metrictypes", t: "<strong>Metric types:</strong> exact match, semantic similarity, and rubric scores each fit different kinds of tasks." },
+      { id: "judge", t: "<strong>LLM-as-judge:</strong> using a model to score outputs against a rubric — fast, but only as trustworthy as the rubric." },
+      { id: "pairwise", t: "<strong>Pairwise comparison:</strong> asking \"is A or B better?\" is often more reliable than scoring a single answer 1–10." },
+      { id: "dataset", t: "<strong>Eval datasets:</strong> a fixed set of inputs + expected behavior you re-run on every change to catch regressions." },
+      { id: "regression", t: "<strong>Regression testing:</strong> re-run the eval set on every change so a fix for one case doesn't silently break another." },
+      { id: "failuremodes", t: "<strong>Common failure modes:</strong> hallucination, instruction-following gaps, formatting breaks, and refusals." },
+      { id: "humanreview", t: "<strong>Human review:</strong> sample real outputs regularly — automated scores miss failure modes you didn't anticipate." },
+      { id: "offlineonline", t: "<strong>Offline vs. online:</strong> test before shipping (offline) and watch real traffic after (online)." }
+    ],
     tips: [
       "Write 10–20 eval cases <strong>before</strong> you optimize anything — it converts \"feels better\" into a number you can trust.",
       "Start with the cheapest eval that works: exact-match or keyword checks before reaching for an LLM judge.",
@@ -512,23 +549,59 @@ const TOPICS = [
     ]
   },
   {
+    id: "rag-grounding", level: "yellow", levelText: "Intermediate",
+    title: "RAG & Knowledge Grounding",
+    sub: "Answering from your knowledge base instead of guessing",
+    intro: "Grounding an agent means making it answer from real sources — your help center, docs, past tickets — instead of from the model's memory. Retrieval-Augmented Generation (RAG) fetches the right context at query time and feeds it to the model, which cuts hallucination and lets you update knowledge without retraining.",
+    points: [
+      { id: "retrieval", t: "<strong>Why retrieval:</strong> instead of relying on the model's frozen training, fetch relevant text at query time so answers reflect your current, specific knowledge." },
+      { id: "embeddings", t: "<strong>Embeddings & vector search:</strong> turn text into vectors and find the closest chunks to a question by semantic similarity, not keyword match." },
+      { id: "chunking", t: "<strong>Chunking:</strong> how you split documents (size, overlap, boundaries) decides what the retriever can find — bad chunks sink retrieval quality." },
+      { id: "hybrid", t: "<strong>Hybrid search:</strong> combine semantic (vector) with keyword (BM25) search to catch both meaning and exact terms like error codes or SKUs." },
+      { id: "rerank", t: "<strong>Reranking:</strong> a second pass that reorders retrieved chunks by relevance, so the best context lands in the prompt." },
+      { id: "injection-ctx", t: "<strong>Context injection:</strong> put retrieved chunks into the prompt with clear boundaries and tell the model to answer only from them." },
+      { id: "citations", t: "<strong>Citations & grounding:</strong> have the agent cite which source each claim came from, so answers are verifiable and trusted." },
+      { id: "freshness", t: "<strong>Freshness & indexing:</strong> keep the index in sync as articles change; stale retrieval is its own kind of wrong answer." },
+      { id: "failures", t: "<strong>RAG failure modes:</strong> missing chunk, wrong chunk retrieved, or right chunk ignored — diagnose which stage failed before fixing." }
+    ],
+    tips: [
+      "Most RAG-is-bad problems are retrieval problems, not model problems — inspect what got retrieved before blaming the answer.",
+      "Measure retrieval on its own (did the right chunk come back?) separately from the final answer.",
+      "Tune chunking first; it is the cheapest lever with the biggest impact on quality."
+    ],
+    youtube: ["what is RAG retrieval augmented generation", "RAG explained for beginners", "vector embeddings explained", "chunking strategies RAG", "hybrid search BM25 vector", "build a RAG chatbot tutorial"],
+    google: ["RAG chunking best practices", "hybrid search reranking RAG", "reduce hallucination with RAG"],
+    free: [
+      { label: "LangChain — RAG tutorial", url: "https://python.langchain.com/docs/tutorials/rag/" },
+      { label: "LlamaIndex — docs", url: "https://docs.llamaindex.ai/" },
+      { label: "Pinecone — Learn (vector search & RAG)", url: "https://www.pinecone.io/learn/" },
+      { label: "Weaviate — docs", url: "https://weaviate.io/developers/weaviate" },
+      { label: "Ragas — RAG evaluation", url: "https://docs.ragas.io/" },
+      { label: "Anthropic — Contextual Retrieval", url: "https://www.anthropic.com/news/contextual-retrieval" },
+      { label: "Hugging Face — Learn (free courses)", url: "https://huggingface.co/learn" }
+    ],
+    quiz: [
+      { q: "What problem does RAG mainly solve?", opts: ["Making the model faster", "Grounding answers in current, specific sources to reduce hallucination", "Removing the need for prompts", "Training the model from scratch"], a: 1 },
+      { q: "If a RAG answer is wrong, what should you check first?", opts: ["The model temperature", "Whether the right chunk was actually retrieved", "The font size", "The API key"], a: 1 },
+      { q: "Why combine vector search with keyword search (hybrid)?", opts: ["To use more GPUs", "To catch both semantic meaning and exact terms like error codes", "To avoid citations", "To skip chunking"], a: 1 }
+    ]
+  },
+  {
     id: "metrics", level: "yellow", levelText: "Intermediate",
     title: "AI Performance Metrics",
     sub: "Measuring agents in production: quality, cost, latency",
-    study: {
-      intro: "Evaluation tells you if an answer is good; metrics tell you how the whole system performs at scale and over time. You're balancing three competing axes — quality, latency, and cost — and you can't optimize one without watching the others.",
-      points: [
-        "<strong>Quality metrics:</strong> task success rate, eval pass rate, escalation rate, user satisfaction.",
-        "<strong>Tie metrics to user outcomes:</strong> a fast, cheap agent that doesn't solve the task is still a failure — quality anchors the rest.",
-        "<strong>Latency:</strong> time-to-first-token and total response time — agents with many tool calls add up fast.",
-        "<strong>Percentiles over averages:</strong> p95/p99 latency reveals the bad tail that a simple average hides.",
-        "<strong>Cost:</strong> tokens per request × volume; multi-agent and long context get expensive quickly.",
-        "<strong>Token accounting:</strong> separate input vs. output tokens — long contexts and verbose outputs cost differently.",
-        "<strong>Throughput & concurrency:</strong> how many requests you can handle at once matters as much as single-request speed.",
-        "<strong>Reliability:</strong> error rate, timeout rate, and how often the loop hits its step limit.",
-        "<strong>Tracing & observability:</strong> log every step of every run so you can debug the slow or wrong ones, not just see an aggregate."
-      ]
-    },
+    intro: "Evaluation tells you if an answer is good; metrics tell you how the whole system performs at scale and over time. You're balancing three competing axes — quality, latency, and cost — and you can't optimize one without watching the others.",
+    points: [
+      { id: "quality", t: "<strong>Quality metrics:</strong> task success rate, eval pass rate, escalation rate, user satisfaction." },
+      { id: "outcomes", t: "<strong>Tie metrics to user outcomes:</strong> a fast, cheap agent that doesn't solve the task is still a failure — quality anchors the rest." },
+      { id: "latency", t: "<strong>Latency:</strong> time-to-first-token and total response time — agents with many tool calls add up fast." },
+      { id: "percentiles", t: "<strong>Percentiles over averages:</strong> p95/p99 latency reveals the bad tail that a simple average hides." },
+      { id: "cost", t: "<strong>Cost:</strong> tokens per request × volume; multi-agent and long context get expensive quickly." },
+      { id: "tokens", t: "<strong>Token accounting:</strong> separate input vs. output tokens — long contexts and verbose outputs cost differently." },
+      { id: "throughput", t: "<strong>Throughput & concurrency:</strong> how many requests you can handle at once matters as much as single-request speed." },
+      { id: "reliability", t: "<strong>Reliability:</strong> error rate, timeout rate, and how often the loop hits its step limit." },
+      { id: "tracing", t: "<strong>Tracing & observability:</strong> log every step of every run so you can debug the slow or wrong ones, not just see an aggregate." }
+    ],
     tips: [
       "Track <strong>quality, latency, and cost together</strong> from day one — improving one usually moves the others.",
       "Add tracing before you need it; debugging a slow run without step-level traces is guesswork.",
@@ -552,23 +625,59 @@ const TOPICS = [
     ]
   },
   {
+    id: "safety", level: "red", levelText: "Advanced",
+    title: "Safety, Guardrails & Prompt Injection",
+    sub: "Keeping an agent safe, on-topic, and hard to manipulate",
+    intro: "An agent in front of real users needs guardrails: protecting private data, staying on-topic, and resisting manipulation. Prompt injection — hiding instructions inside user input or retrieved content — is the signature new attack, and there is no single fix, so you defend in layers.",
+    points: [
+      { id: "injection", t: "<strong>Prompt injection:</strong> malicious instructions hidden in user input that try to override your system prompt — the defining LLM attack." },
+      { id: "indirect", t: "<strong>Indirect injection:</strong> the payload lives in a document, web page, or ticket the agent reads, not in what the user types directly." },
+      { id: "layered", t: "<strong>No single fix:</strong> defend in layers — input checks, constrained tools, output filtering, and least privilege — rather than one magic prompt." },
+      { id: "pii", t: "<strong>PII & data handling:</strong> detect and redact personal data, and decide what the agent may store, log, or send to third parties." },
+      { id: "moderation", t: "<strong>Moderation & filtering:</strong> screen inputs and outputs for unsafe content before they reach a user or a tool." },
+      { id: "least-priv", t: "<strong>Least privilege for tools:</strong> give the agent the narrowest permissions that work; never let a chat turn trigger an unbounded action." },
+      { id: "output-val", t: "<strong>Output validation:</strong> validate and sandbox anything the model produces before executing it (SQL, code, API calls)." },
+      { id: "jailbreak", t: "<strong>Jailbreaks:</strong> framings that coax the model past its rules; test against them and never rely on the model policing itself." },
+      { id: "redteam", t: "<strong>Red-teaming:</strong> actively try to break your own agent, and automate it, as part of every release." }
+    ],
+    tips: [
+      "Treat everything the model reads — user text and retrieved content alike — as untrusted input, exactly like web form data.",
+      "Never give an agent a capability you would not let an anonymous user trigger directly.",
+      "Log and review refusals and odd outputs; they are early signals of an attack or a gap."
+    ],
+    youtube: ["prompt injection explained", "LLM security OWASP top 10", "jailbreak LLM explained", "PII redaction LLM", "securing AI agents tutorial", "indirect prompt injection demo"],
+    google: ["OWASP top 10 LLM applications", "prompt injection defenses", "guardrails LLM output validation"],
+    free: [
+      { label: "OWASP — Top 10 for LLM Applications", url: "https://genai.owasp.org/" },
+      { label: "Lakera — Gandalf (learn injection by playing)", url: "https://gandalf.lakera.ai/" },
+      { label: "Guardrails AI (open source)", url: "https://www.guardrailsai.com/" },
+      { label: "NVIDIA — NeMo Guardrails", url: "https://github.com/NVIDIA/NeMo-Guardrails" },
+      { label: "promptfoo — red-teaming & security", url: "https://www.promptfoo.dev/" },
+      { label: "Anthropic — Constitutional AI", url: "https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback" },
+      { label: "OpenAI — Moderation guide", url: "https://platform.openai.com/docs/guides/moderation" }
+    ],
+    quiz: [
+      { q: "What is prompt injection?", opts: ["A way to speed up prompts", "Hidden instructions in input or content that try to override the system prompt", "A type of fine-tuning", "A caching technique"], a: 1 },
+      { q: "How should you treat content the agent retrieves (docs, tickets)?", opts: ["Fully trusted", "Untrusted input, like any web form data", "Ignore it entirely", "Trust it only if it is long"], a: 1 },
+      { q: "Why give an agent least-privilege tool access?", opts: ["It is cheaper", "So a single chat turn cannot trigger an unbounded or dangerous action", "It improves grammar", "Models require it"], a: 1 }
+    ]
+  },
+  {
     id: "handoff", level: "red", levelText: "Advanced",
     title: "Human-AI Handoff",
     sub: "Knowing when to escalate to a person — and doing it cleanly",
-    study: {
-      intro: "A mature agent knows its limits. Handoff is the design of when and how an agent passes control to a human — for safety, for ambiguity, or for decisions that need accountability. Done badly, it either escalates everything or nothing.",
-      points: [
-        "<strong>Confidence & uncertainty signals:</strong> low tool-call success, repeated retries, or explicit 'I'm not sure' are triggers to escalate.",
-        "<strong>Confidence isn't calibrated:</strong> a model saying \"I'm sure\" isn't proof — combine self-reports with hard signals like tool failures.",
-        "<strong>Escalation policy:</strong> define hard rules (refunds over $X, legal questions, anything involving safety) that always go to a human.",
-        "<strong>Reversibility:</strong> auto-allow low-risk reversible actions; require approval for irreversible or high-cost ones.",
-        "<strong>Context transfer:</strong> hand the human the full conversation and the agent's reasoning, not just the last message.",
-        "<strong>Graceful framing:</strong> tell the user a person is taking over rather than failing silently.",
-        "<strong>Human-in-the-loop approval:</strong> the agent proposes, the human approves before a risky action executes.",
-        "<strong>Audit trail:</strong> log who (agent or human) did what and why, for accountability and debugging.",
-        "<strong>Round-trip back to the agent:</strong> after a human resolves something, feed the resolution back so the agent can continue."
-      ]
-    },
+    intro: "A mature agent knows its limits. Handoff is the design of when and how an agent passes control to a human — for safety, for ambiguity, or for decisions that need accountability. Done badly, it either escalates everything or nothing.",
+    points: [
+      { id: "signals", t: "<strong>Confidence & uncertainty signals:</strong> low tool-call success, repeated retries, or explicit 'I'm not sure' are triggers to escalate." },
+      { id: "calibration", t: "<strong>Confidence isn't calibrated:</strong> a model saying \"I'm sure\" isn't proof — combine self-reports with hard signals like tool failures." },
+      { id: "policy", t: "<strong>Escalation policy:</strong> define hard rules (refunds over $X, legal questions, anything involving safety) that always go to a human." },
+      { id: "reversibility", t: "<strong>Reversibility:</strong> auto-allow low-risk reversible actions; require approval for irreversible or high-cost ones." },
+      { id: "context", t: "<strong>Context transfer:</strong> hand the human the full conversation and the agent's reasoning, not just the last message." },
+      { id: "framing", t: "<strong>Graceful framing:</strong> tell the user a person is taking over rather than failing silently." },
+      { id: "approval", t: "<strong>Human-in-the-loop approval:</strong> the agent proposes, the human approves before a risky action executes." },
+      { id: "audit", t: "<strong>Audit trail:</strong> log who (agent or human) did what and why, for accountability and debugging." },
+      { id: "roundtrip", t: "<strong>Round-trip back to the agent:</strong> after a human resolves something, feed the resolution back so the agent can continue." }
+    ],
     tips: [
       "Decide your escalation rules first as plain <em>if-this-then-human</em> statements, before writing any classifier.",
       "Test the handoff itself: a good handoff hands over the full thread + the agent's reasoning, not just the last line.",
@@ -595,20 +704,18 @@ const TOPICS = [
     id: "feedback", level: "red", levelText: "Advanced",
     title: "AI Feedback Loops",
     sub: "Turning real usage into a better agent over time",
-    study: {
-      intro: "Agents don't improve by themselves — feedback loops close the gap between what they do and what users actually wanted. The trick is capturing signal cheaply and feeding it back without creating drift or bias.",
-      points: [
-        "<strong>Explicit feedback:</strong> thumbs up/down, corrections, ratings — high signal, low volume.",
-        "<strong>Implicit feedback:</strong> did the user accept the answer, retry, rephrase, or abandon? — low signal, high volume.",
-        "<strong>From feedback to action:</strong> route signal into prompt updates, new eval cases, few-shot examples, or fine-tuning data.",
-        "<strong>Close the loop fast:</strong> feedback that takes weeks to act on rarely gets used — aim for short capture-to-improvement cycles.",
-        "<strong>Labeling cost:</strong> explicit corrections are gold but expensive; design lightweight ways for users to give them.",
-        "<strong>RLHF in one line:</strong> human preferences become a reward signal that shapes model behavior.",
-        "<strong>Drift detection:</strong> watch whether quality changes over time as inputs and user behavior shift.",
-        "<strong>Reward hacking:</strong> optimizing a proxy like thumbs-up can game the metric instead of actually helping users.",
-        "<strong>Loop hygiene:</strong> beware feedback that just reinforces the majority and erases edge cases."
-      ]
-    },
+    intro: "Agents don't improve by themselves — feedback loops close the gap between what they do and what users actually wanted. The trick is capturing signal cheaply and feeding it back without creating drift or bias.",
+    points: [
+      { id: "explicit", t: "<strong>Explicit feedback:</strong> thumbs up/down, corrections, ratings — high signal, low volume." },
+      { id: "implicit", t: "<strong>Implicit feedback:</strong> did the user accept the answer, retry, rephrase, or abandon? — low signal, high volume." },
+      { id: "action", t: "<strong>From feedback to action:</strong> route signal into prompt updates, new eval cases, few-shot examples, or fine-tuning data." },
+      { id: "fast", t: "<strong>Close the loop fast:</strong> feedback that takes weeks to act on rarely gets used — aim for short capture-to-improvement cycles." },
+      { id: "labeling", t: "<strong>Labeling cost:</strong> explicit corrections are gold but expensive; design lightweight ways for users to give them." },
+      { id: "rlhf", t: "<strong>RLHF in one line:</strong> human preferences become a reward signal that shapes model behavior." },
+      { id: "drift", t: "<strong>Drift detection:</strong> watch whether quality changes over time as inputs and user behavior shift." },
+      { id: "rewardhack", t: "<strong>Reward hacking:</strong> optimizing a proxy like thumbs-up can game the metric instead of actually helping users." },
+      { id: "hygiene", t: "<strong>Loop hygiene:</strong> beware feedback that just reinforces the majority and erases edge cases." }
+    ],
     tips: [
       "Capture feedback at the <strong>turn level</strong> with the full context attached, or you won't be able to act on it later.",
       "Send new feedback to your eval set first; only graduate to fine-tuning when you have volume and a clear pattern.",
@@ -635,20 +742,18 @@ const TOPICS = [
     id: "orchestration", level: "red", levelText: "Advanced",
     title: "Agent Orchestration",
     sub: "Coordinating multiple agents, tools, and steps",
-    study: {
-      intro: "One agent in a loop is the easy case. Real systems coordinate several specialized agents, tools, and control flow. Orchestration is the architecture that decides who does what, in what order, and how state moves between them.",
-      points: [
-        "<strong>Single-agent vs. multi-agent:</strong> add agents only when a task truly splits into specialized roles — more agents means more failure surface.",
-        "<strong>Task decomposition:</strong> split a goal into subtasks with clear inputs and outputs before deciding who handles each.",
-        "<strong>Common patterns:</strong> router (pick a specialist), pipeline (sequential stages), supervisor (one agent delegates to others).",
-        "<strong>Tool vs. agent:</strong> sometimes a plain function call is enough; reach for another agent only when the subtask needs reasoning.",
-        "<strong>Shared state:</strong> a graph or blackboard that all steps read from and write to, keeping context coherent.",
-        "<strong>Communication overhead:</strong> agents passing messages adds latency, cost, and places for context to get lost.",
-        "<strong>Error handling & retries:</strong> any step can fail — design fallbacks, timeouts, and loop limits to avoid runaway costs.",
-        "<strong>Observability across steps:</strong> trace the whole run, not just each agent, so you can see where a multi-step flow broke.",
-        "<strong>Determinism where it matters:</strong> hard-code control flow for critical paths, let the model decide only where flexibility helps."
-      ]
-    },
+    intro: "One agent in a loop is the easy case. Real systems coordinate several specialized agents, tools, and control flow. Orchestration is the architecture that decides who does what, in what order, and how state moves between them.",
+    points: [
+      { id: "singlemulti", t: "<strong>Single-agent vs. multi-agent:</strong> add agents only when a task truly splits into specialized roles — more agents means more failure surface." },
+      { id: "decompose", t: "<strong>Task decomposition:</strong> split a goal into subtasks with clear inputs and outputs before deciding who handles each." },
+      { id: "patterns", t: "<strong>Common patterns:</strong> router (pick a specialist), pipeline (sequential stages), supervisor (one agent delegates to others)." },
+      { id: "toolvsagent", t: "<strong>Tool vs. agent:</strong> sometimes a plain function call is enough; reach for another agent only when the subtask needs reasoning." },
+      { id: "state", t: "<strong>Shared state:</strong> a graph or blackboard that all steps read from and write to, keeping context coherent." },
+      { id: "overhead", t: "<strong>Communication overhead:</strong> agents passing messages adds latency, cost, and places for context to get lost." },
+      { id: "errors", t: "<strong>Error handling & retries:</strong> any step can fail — design fallbacks, timeouts, and loop limits to avoid runaway costs." },
+      { id: "observability", t: "<strong>Observability across steps:</strong> trace the whole run, not just each agent, so you can see where a multi-step flow broke." },
+      { id: "determinism", t: "<strong>Determinism where it matters:</strong> hard-code control flow for critical paths, let the model decide only where flexibility helps." }
+    ],
     tips: [
       "Start single-agent. Only split into multiple agents when a task genuinely has distinct specialist roles — every extra agent is extra failure surface.",
       "Always set a step/loop limit and a timeout, or a stuck agent will quietly burn your budget.",
@@ -671,61 +776,150 @@ const TOPICS = [
       { q: "A 'supervisor' orchestration pattern means…", opts: ["A human watches everything", "One agent delegates subtasks to specialist agents", "Agents vote", "No agent has memory"], a: 1 },
       { q: "Why hard-code control flow on critical paths?", opts: ["It looks more professional", "To get determinism and avoid the model improvising on high-stakes steps", "It uses fewer tokens", "Models can't do branching"], a: 1 }
     ]
+  },
+  {
+    id: "cs-applied", level: "purple", levelText: "Capstone",
+    title: "AI for Customer Support",
+    sub: "Putting it all together in a real support workflow",
+    intro: "This capstone applies everything above to the work a support team actually does. A support agent is not one feature — it is triage, drafting, summarizing, grounding answers in your help center, knowing when to hand off, and being measured on resolution, not just words.",
+    points: [
+      { id: "usecases", t: "<strong>Where AI fits in support:</strong> ticket triage, reply drafting, conversation summaries, knowledge-base answers, and post-resolution QA — pick the highest-value one first." },
+      { id: "copilot", t: "<strong>Copilot before autopilot:</strong> start by assisting agents with suggested replies before letting the AI answer customers unsupervised." },
+      { id: "grounding", t: "<strong>Ground every answer:</strong> answer from your help center and macros (RAG) with citations, so the agent does not invent policy." },
+      { id: "tone", t: "<strong>Brand voice & tone:</strong> encode your support voice in the system prompt so drafts sound like your team, not a generic bot." },
+      { id: "triage", t: "<strong>Triage & routing:</strong> classify intent, urgency, and language, then route to the right queue or specialist." },
+      { id: "summarize", t: "<strong>Summarization:</strong> condense long threads for handoffs and for the next agent, saving re-reading time." },
+      { id: "deflection", t: "<strong>Deflection vs. resolution:</strong> measure tickets truly resolved, not just deflected — a closed-but-unhappy customer is a false win." },
+      { id: "escalation", t: "<strong>Escalation & expectations:</strong> set clear rules for when to involve a human, and tell the customer when one is taking over." },
+      { id: "qa", t: "<strong>Quality & feedback:</strong> sample AI replies for accuracy and tone, and feed corrections back into prompts and your eval set." }
+    ],
+    tips: [
+      "Pick one workflow (e.g. reply drafting) and nail it end to end before expanding — a broad, mediocre rollout erodes trust fast.",
+      "Measure against your real metric: resolution rate and CSAT, not how human the text sounds.",
+      "Keep an agent in the loop on anything customer-facing until your evals and metrics earn the autonomy."
+    ],
+    youtube: ["AI customer support automation", "build a support chatbot tutorial", "ticket triage with LLM", "customer service AI agent", "RAG customer support knowledge base", "AI deflection vs resolution"],
+    google: ["AI customer support best practices", "support ticket deflection rate", "LLM agent customer service design"],
+    free: [
+      { label: "Anthropic — Building Effective Agents", url: "https://www.anthropic.com/engineering/building-effective-agents" },
+      { label: "Intercom — Blog (AI customer service)", url: "https://www.intercom.com/blog/" },
+      { label: "Zendesk — Blog (CX & AI)", url: "https://www.zendesk.com/blog/" },
+      { label: "LangChain — Tutorials", url: "https://python.langchain.com/docs/tutorials/" },
+      { label: "DeepLearning.AI — Free short courses", url: "https://www.deeplearning.ai/short-courses/" },
+      { label: "Google PAIR — People + AI Guidebook", url: "https://pair.withgoogle.com/guidebook/" },
+      { label: "promptfoo — eval your support bot", url: "https://www.promptfoo.dev/" }
+    ],
+    quiz: [
+      { q: "What is the safer way to roll out AI in support first?", opts: ["Full autopilot to all customers", "Copilot: assist agents with suggested replies before unsupervised responses", "Replace the whole team", "Only on weekends"], a: 1 },
+      { q: "Which metric best reflects real success?", opts: ["How human the text sounds", "Resolution rate and CSAT, not just deflection", "Number of tokens used", "Response length"], a: 1 },
+      { q: "How should a support agent answer policy questions?", opts: ["From the model memory", "Grounded in the help center and macros, with citations", "By guessing politely", "By escalating everything"], a: 1 }
+    ]
   }
 ];
 
 const STORE_KEY = "ai-agents-roadmap-v1";
 let state = JSON.parse(localStorage.getItem(STORE_KEY) || "{}");
+if (!state.checked || typeof state.checked !== "object") state.checked = {};
 function save() { localStorage.setItem(STORE_KEY, JSON.stringify(state)); }
 
-const yt = q => `<a class="res-link yt" href="https://www.youtube.com/results?search_query=${encodeURIComponent(q)}" target="_blank" rel="noopener">▶ ${q}</a>`;
-const gg = q => `<a class="res-link gg" href="https://www.google.com/search?q=${encodeURIComponent(q)}" target="_blank" rel="noopener">🔍 ${q}</a>`;
-
-const container = document.getElementById("topics");
-
-function resetQuiz(el) {
-  el._quizState = {};
-  el.querySelectorAll(".opt").forEach(b => { b.disabled = false; b.classList.remove("correct", "wrong"); });
-  const res = el.querySelector(".quiz-result");
-  res.className = "quiz-result";
-  res.innerHTML = "";
+// ---- Stable keys (never tied to position) ----
+const topicKey = t => t.id;
+const pointKey = (t, p) => `${t.id}::p::${p.id}`;
+const ytKey = (t, q) => `${t.id}::yt::${q}`;
+const ggKey = (t, q) => `${t.id}::gg::${q}`;
+const resKey = (t, r) => `${t.id}::res::${r.url}`;
+function childKeys(t) {
+  return [
+    ...t.points.map(p => pointKey(t, p)),
+    ...t.youtube.map(q => ytKey(t, q)),
+    ...(t.google || []).map(q => ggKey(t, q)),
+    ...t.free.map(r => resKey(t, r))
+  ];
+}
+function allKeys() {
+  const ks = [];
+  TOPICS.forEach(t => { ks.push(topicKey(t)); ks.push(...childKeys(t)); });
+  return ks;
 }
 
+// ---- Migrate older saves (topic-level "done" flag -> tick all its concepts) ----
+TOPICS.forEach(t => {
+  if (state[t.id] === true) {
+    t.points.forEach(p => { state.checked[pointKey(t, p)] = true; });
+    delete state[t.id];
+  }
+});
+
+// ---- NEW detection: baseline = what was already seen on this device ----
+const currentKeys = allKeys();
+let seen;
+if (!Array.isArray(state.seen)) {
+  // first run of this feature (or brand-new visitor): treat everything as already seen
+  seen = new Set(currentKeys);
+  state.seen = currentKeys;
+  save();
+} else {
+  seen = new Set(state.seen);
+}
+const isNew = key => !seen.has(key);
+
+const CHECK = '<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6.5l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const newPill = ' <span class="badge-new is-new">NEW</span>';
+
+const topicById = Object.fromEntries(TOPICS.map(t => [t.id, t]));
+const container = document.getElementById("topics");
+
 TOPICS.forEach((t, i) => {
-  const done = !!state[t.id];
   const el = document.createElement("div");
-  el.className = "topic" + (done ? " done" : "");
+  el.className = "topic";
   el.dataset.id = t.id;
 
+  const topicNew = isNew(topicKey(t));                 // brand-new topic
+  const childTag = key => (!topicNew && isNew(key)) ? newPill : "";  // suppress child pills if whole topic is new
+
   const studyHTML = `
-    <div class="block-label">📖 What to study</div>
-    <p>${t.study.intro}</p>
-    <ul class="points">${t.study.points.map(p => `<li>${p}</li>`).join("")}</ul>`;
+    <div class="block-label">📖 What to study <span class="bl-hint">· tick off what you've covered</span></div>
+    <div class="study-list">
+      ${t.points.map(p => {
+        const k = pointKey(t, p);
+        const checked = !!state.checked[k];
+        return `<label class="study-item${checked ? " done" : ""}" data-key="${k}">
+          <input type="checkbox" class="item-cb"${checked ? " checked" : ""}>
+          <span class="checkbox">${CHECK}</span>
+          <span class="item-text">${p.t}${childTag(k)}</span>
+        </label>`;
+      }).join("")}
+    </div>
+    <div class="mark-all-wrap"><button class="btn-mini mark-all" type="button"></button></div>`;
 
   const tipsHTML = `
     <div class="block-label">💡 Study tips</div>
     <ul class="tip-list">${t.tips.map(tp => `<li>${tp}</li>`).join("")}</ul>`;
 
+  const ytChip = q => `<a class="res-link yt" href="https://www.youtube.com/results?search_query=${encodeURIComponent(q)}" target="_blank" rel="noopener">▶ ${q}${childTag(ytKey(t, q))}</a>`;
+  const ggChip = q => `<a class="res-link gg" href="https://www.google.com/search?q=${encodeURIComponent(q)}" target="_blank" rel="noopener">🔍 ${q}${childTag(ggKey(t, q))}</a>`;
+  const freeLink = r => `<a class="free-link" href="${r.url}" target="_blank" rel="noopener">${r.label} ↗${childTag(resKey(t, r))}</a>`;
+
   const whereHTML = `
     <div class="block-label">🎥 Where to study</div>
     <div class="res-mini">Search — always up to date</div>
     <div class="resources-row">
-      ${t.youtube.map(yt).join("")}
-      ${(t.google || []).map(gg).join("")}
+      ${t.youtube.map(ytChip).join("")}
+      ${(t.google || []).map(ggChip).join("")}
     </div>
     <div class="res-mini">Free resources</div>
     <div class="free-links">
-      ${t.free.map(f => `<a class="free-link" href="${f.url}" target="_blank" rel="noopener">${f.label} ↗</a>`).join("")}
+      ${t.free.map(freeLink).join("")}
     </div>`;
 
   const quizHTML = `
-    <button class="btn take-quiz">📝 Take Quiz</button>
+    <button class="btn take-quiz" type="button">📝 Take Quiz</button>
     <div class="quiz-wrap" hidden>
       ${t.quiz.map((q, qi) => `
         <div class="question" data-q="${qi}">
           <div class="q">${qi + 1}. ${q.q}</div>
           <div class="opts">
-            ${q.opts.map((o, oi) => `<button class="opt" data-opt="${oi}">${o}</button>`).join("")}
+            ${q.opts.map((o, oi) => `<button class="opt" type="button" data-opt="${oi}">${o}</button>`).join("")}
           </div>
         </div>`).join("")}
       <div class="quiz-result"></div>
@@ -738,7 +932,11 @@ TOPICS.forEach((t, i) => {
         <h2><span class="dot ${t.level}"></span> ${t.title}</h2>
         <div class="sub">${t.sub}</div>
       </div>
-      <span class="chip ${t.level}">${t.levelText}</span>
+      <div class="topic-meta">
+        <span class="badge-new header-new" hidden>NEW</span>
+        <span class="chip-count">0/${t.points.length}</span>
+        <span class="chip ${t.level}">${t.levelText}</span>
+      </div>
       <svg class="caret" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
     <div class="topic-body">
@@ -746,19 +944,58 @@ TOPICS.forEach((t, i) => {
       ${tipsHTML}
       ${whereHTML}
       ${quizHTML}
-      <label class="mark-done">
-        <input type="checkbox" class="done-cb" ${done ? "checked" : ""}>
-        <span class="checkbox"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6.5l2.5 2.5 4.5-5" stroke="#0a0e16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        Mark this topic as studied
-      </label>
     </div>`;
 
   container.appendChild(el);
 
-  // Toggle open/close
-  el.querySelector(".topic-head").addEventListener("click", () => el.classList.toggle("open"));
+  refreshHeaderBadge(el, t);
+  updateTopicProgress(el, t);
+  updateMarkAllLabel(el, t);
 
-  // Quiz: option clicks
+  // Open / close — opening marks this topic's content as seen
+  el.querySelector(".topic-head").addEventListener("click", () => {
+    const opening = !el.classList.contains("open");
+    el.classList.toggle("open");
+    if (opening) {
+      markTopicSeen(t);
+      el.querySelectorAll(".badge-new.is-new").forEach(n => n.remove());
+      refreshHeaderBadge(el, t);
+      updateDismissBtn();
+    }
+  });
+
+  // Concept checkmarks
+  el.querySelectorAll(".item-cb").forEach(cb => {
+    cb.addEventListener("change", () => {
+      const label = cb.closest(".study-item");
+      const k = label.dataset.key;
+      if (cb.checked) state.checked[k] = true; else delete state.checked[k];
+      label.classList.toggle("done", cb.checked);
+      save();
+      updateTopicProgress(el, t);
+      updateMarkAllLabel(el, t);
+      updateOverall();
+    });
+  });
+
+  // Mark all / clear all
+  el.querySelector(".mark-all").addEventListener("click", () => {
+    const total = t.points.length;
+    const done = t.points.filter(p => state.checked[pointKey(t, p)]).length;
+    const target = done < total;
+    el.querySelectorAll(".study-item").forEach(label => {
+      const k = label.dataset.key;
+      label.querySelector(".item-cb").checked = target;
+      label.classList.toggle("done", target);
+      if (target) state.checked[k] = true; else delete state.checked[k];
+    });
+    save();
+    updateTopicProgress(el, t);
+    updateMarkAllLabel(el, t);
+    updateOverall();
+  });
+
+  // Quiz
   el._quizState = {};
   el.querySelectorAll(".question").forEach(qEl => {
     const qi = +qEl.dataset.q;
@@ -780,19 +1017,17 @@ TOPICS.forEach((t, i) => {
           const pass = pct >= 80;
           const res = el.querySelector(".quiz-result");
           res.className = "quiz-result show " + (pass ? "pass" : "fail");
-          res.innerHTML = `<span>${score}/${t.quiz.length} correct · ${pct}% · ${pass ? "Passed ✓" : "Keep studying"}</span><button class="retry-btn">↻ Retry</button>`;
+          res.innerHTML = `<span>${score}/${t.quiz.length} correct · ${pct}% · ${pass ? "Passed ✓" : "Keep studying"}</span><button class="retry-btn" type="button">↻ Retry</button>`;
           res.querySelector(".retry-btn").addEventListener("click", () => resetQuiz(el));
         }
       });
     });
   });
 
-  // Take Quiz toggle
   const takeBtn = el.querySelector(".take-quiz");
   const quizWrap = el.querySelector(".quiz-wrap");
   takeBtn.addEventListener("click", () => {
-    const isHidden = quizWrap.hasAttribute("hidden");
-    if (isHidden) {
+    if (quizWrap.hasAttribute("hidden")) {
       quizWrap.removeAttribute("hidden");
       resetQuiz(el);
       takeBtn.textContent = "✕ Hide quiz";
@@ -801,29 +1036,71 @@ TOPICS.forEach((t, i) => {
       takeBtn.textContent = "📝 Take Quiz";
     }
   });
-
-  // Mark done
-  el.querySelector(".done-cb").addEventListener("change", e => {
-    if (e.target.checked) { state[t.id] = true; el.classList.add("done"); }
-    else { delete state[t.id]; el.classList.remove("done"); }
-    save(); updateProgress();
-  });
 });
 
-function updateProgress() {
-  const total = TOPICS.length;
-  const done = TOPICS.filter(t => state[t.id]).length;
-  const pct = Math.round((done / total) * 100);
-  document.getElementById("progress-text").textContent = `${done} / ${total} topics studied`;
+function resetQuiz(el) {
+  el._quizState = {};
+  el.querySelectorAll(".opt").forEach(b => { b.disabled = false; b.classList.remove("correct", "wrong"); });
+  const res = el.querySelector(".quiz-result");
+  res.className = "quiz-result";
+  res.innerHTML = "";
+}
+
+function updateTopicProgress(el, t) {
+  const total = t.points.length;
+  const done = t.points.filter(p => state.checked[pointKey(t, p)]).length;
+  el.querySelector(".chip-count").textContent = `${done}/${total}`;
+  el.classList.toggle("done", total > 0 && done === total);
+}
+
+function updateMarkAllLabel(el, t) {
+  const total = t.points.length;
+  const done = t.points.filter(p => state.checked[pointKey(t, p)]).length;
+  el.querySelector(".mark-all").textContent = done < total ? "Mark all as studied" : "Clear all";
+}
+
+function refreshHeaderBadge(el, t) {
+  const hasNew = isNew(topicKey(t)) || childKeys(t).some(isNew);
+  el.querySelector(".header-new").hidden = !hasNew;
+}
+
+function markTopicSeen(t) {
+  let changed = false;
+  [topicKey(t), ...childKeys(t)].forEach(k => { if (!seen.has(k)) { seen.add(k); changed = true; } });
+  if (changed) { state.seen = Array.from(seen); save(); }
+}
+
+function updateDismissBtn() {
+  document.getElementById("dismiss-new").hidden = !currentKeys.some(k => !seen.has(k));
+}
+
+function updateOverall() {
+  let total = 0, done = 0;
+  TOPICS.forEach(t => {
+    total += t.points.length;
+    done += t.points.filter(p => state.checked[pointKey(t, p)]).length;
+  });
+  const pct = total ? Math.round(done / total * 100) : 0;
+  document.getElementById("progress-text").textContent = `${done} / ${total} concepts studied`;
   document.getElementById("progress-pct").textContent = pct + "%";
   document.getElementById("progress-fill").style.width = pct + "%";
 }
-updateProgress();
+
+updateOverall();
+updateDismissBtn();
+
+// Dismiss all NEW at once
+document.getElementById("dismiss-new").addEventListener("click", () => {
+  currentKeys.forEach(k => seen.add(k));
+  state.seen = Array.from(seen); save();
+  document.querySelectorAll(".badge-new.is-new").forEach(n => n.remove());
+  document.querySelectorAll(".header-new").forEach(b => b.hidden = true);
+  updateDismissBtn();
+});
 
 // Theme
 const root = document.documentElement;
-const savedTheme = localStorage.getItem("ai-roadmap-theme") || "dark";
-applyTheme(savedTheme);
+applyTheme(localStorage.getItem("ai-roadmap-theme") || "dark");
 document.getElementById("theme-toggle").addEventListener("click", () => {
   const next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
   applyTheme(next); localStorage.setItem("ai-roadmap-theme", next);
@@ -834,23 +1111,91 @@ function applyTheme(theme) {
   document.getElementById("theme-label").textContent = theme === "light" ? "Light" : "Dark";
 }
 
-// Expand all
+// Expand all (opening also clears NEW for those topics)
 let allOpen = false;
 document.getElementById("expand-all").addEventListener("click", e => {
   allOpen = !allOpen;
-  document.querySelectorAll(".topic").forEach(t => t.classList.toggle("open", allOpen));
+  document.querySelectorAll(".topic").forEach(el => {
+    el.classList.toggle("open", allOpen);
+    if (allOpen) {
+      const t = topicById[el.dataset.id];
+      markTopicSeen(t);
+      el.querySelectorAll(".badge-new.is-new").forEach(n => n.remove());
+      el.querySelector(".header-new").hidden = true;
+    }
+  });
+  if (allOpen) updateDismissBtn();
   e.currentTarget.innerHTML = allOpen ? "⬆ Collapse all" : "⬇ Expand all";
 });
 
-// Reset
+// Reset study progress (keeps the NEW baseline)
 document.getElementById("reset").addEventListener("click", () => {
   if (confirm("Reset all studied progress? This can't be undone.")) {
-    state = {}; save();
-    document.querySelectorAll(".done-cb").forEach(cb => cb.checked = false);
-    document.querySelectorAll(".topic").forEach(t => t.classList.remove("done"));
-    updateProgress();
+    state.checked = {}; save();
+    document.querySelectorAll(".item-cb").forEach(cb => cb.checked = false);
+    document.querySelectorAll(".study-item").forEach(l => l.classList.remove("done"));
+    document.querySelectorAll(".topic").forEach(el => {
+      const t = topicById[el.dataset.id];
+      updateTopicProgress(el, t);
+      updateMarkAllLabel(el, t);
+    });
+    updateOverall();
   }
 });
+
+// ---- Version / What's new popup ----
+const SITE_VERSION = "1.2";
+const CHANGELOG = [
+  { v: "1.2", date: "Jun 2026",
+    content: [
+      "New path — RAG & Knowledge Grounding: answer from your help center instead of guessing.",
+      "New path — Safety, Guardrails & Prompt Injection: protect data and resist manipulation.",
+      "New capstone — AI for Customer Support: ties every topic into a real support workflow."
+    ],
+    ui: [
+      "This What's-new popup, so you always see what changed after an update.",
+      "New Capstone tier (violet) for the applied finale."
+    ] },
+  { v: "1.1", date: "Jun 2026",
+    content: [
+      "Every concept under What to study can now be ticked off as you learn it.",
+      "Each topic shows your progress (e.g. 5/9) and turns green when complete."
+    ],
+    ui: [
+      "Automatic NEW badge on anything added since your last visit.",
+      "Per-topic Mark all / Clear, plus Mark all as seen."
+    ] },
+  { v: "1.0", date: "Jun 2026",
+    content: [
+      "Initial roadmap: topics with study material, tips, free resources and a quiz each."
+    ],
+    ui: [
+      "Dark / light theme, expandable topics, and progress saved in your browser."
+    ] }
+];
+
+const modal = document.getElementById("changelog-modal");
+function renderChangelog() {
+  document.getElementById("cl-version").textContent = "v" + SITE_VERSION;
+  document.getElementById("changelog-body").innerHTML = CHANGELOG.map((e, i) => `
+    <div class="cl-entry">
+      <div class="cl-ver"><b>v${e.v}</b><span class="cl-date">${e.date}</span>${i === 0 ? '<span class="cl-latest">Latest</span>' : ''}</div>
+      ${e.content && e.content.length ? `<div class="cl-group content"><span class="cl-tag">Content</span><ul class="cl-list">${e.content.map(c => `<li>${c}</li>`).join("")}</ul></div>` : ''}
+      ${e.ui && e.ui.length ? `<div class="cl-group ui"><span class="cl-tag">UI &amp; features</span><ul class="cl-list">${e.ui.map(c => `<li>${c}</li>`).join("")}</ul></div>` : ''}
+    </div>`).join("");
+}
+function openModal() { renderChangelog(); modal.removeAttribute("hidden"); }
+function closeModal() {
+  modal.setAttribute("hidden", "");
+  if (state.seenVersion !== SITE_VERSION) { state.seenVersion = SITE_VERSION; save(); }
+}
+document.getElementById("changelog-close").addEventListener("click", closeModal);
+document.getElementById("changelog-got").addEventListener("click", closeModal);
+document.getElementById("open-changelog").addEventListener("click", openModal);
+modal.addEventListener("click", e => { if (e.target === modal) closeModal(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !modal.hasAttribute("hidden")) closeModal(); });
+// Show automatically once per version (also on a brand-new visit)
+if (state.seenVersion !== SITE_VERSION) openModal();
 </script>
 </body>
 </html>
