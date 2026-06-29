@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Agents — Study Roadmap</title>
-<meta name="description" content="A shareable study roadmap for working with AI agents. Tick off concepts as you study them, quizzes per topic, free resources, and a NEW badge on anything added since your last visit. Progress saved in your browser.">
+<meta name="description" content="A shareable study roadmap for working with AI agents — concepts, free resources, per-topic progress, search and filters, and a NEW badge on anything added since your last visit. Progress saved in your browser.">
 <style>
   :root {
     --bg: #0a0e16;
@@ -202,23 +202,6 @@
   .topic-body p { color: var(--text-dim); margin-bottom: 12px; font-size: 14.5px; }
   .topic-body strong { color: var(--text); font-weight: 600; }
 
-  /* Study checklist */
-  .study-list { margin: 0 0 4px; }
-  .study-item { display: flex; align-items: flex-start; gap: 11px; padding: 7px 8px; border-radius: 9px; cursor: pointer; transition: background .14s; }
-  .study-item:hover { background: var(--bg-hover); }
-  .study-item input.item-cb { position: absolute; opacity: 0; width: 0; height: 0; }
-  .study-item .checkbox { width: 19px; height: 19px; border-radius: 6px; border: 1.5px solid var(--border); display: grid; place-items: center; transition: .15s; flex-shrink: 0; margin-top: 2px; color: var(--check-ink); }
-  .study-item input:checked + .checkbox { background: var(--accent); border-color: var(--accent); }
-  .study-item .checkbox svg { opacity: 0; transition: .15s; }
-  .study-item input:checked + .checkbox svg { opacity: 1; }
-  .study-item input:focus-visible + .checkbox { outline: 2px solid var(--accent-2); outline-offset: 2px; }
-  .study-item .item-text { font-size: 14px; color: var(--text-dim); }
-  .study-item.done .item-text { color: var(--text-faint); }
-  .study-item.done .item-text strong { color: var(--text-dim); }
-  .mark-all-wrap { margin: 6px 0 2px; padding-left: 8px; }
-  .btn-mini { background: transparent; border: none; color: var(--text-faint); font-family: var(--body); font-size: 12.5px; cursor: pointer; padding: 4px 0; text-decoration: underline; text-underline-offset: 3px; transition: color .14s; }
-  .btn-mini:hover { color: var(--accent-2); }
-
   /* NEW badge */
   .badge-new { display: inline-block; background: var(--accent); color: var(--check-ink); font-family: var(--mono); font-size: 9px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 2px 6px; border-radius: 5px; vertical-align: middle; }
   .header-new[hidden] { display: none; }
@@ -247,39 +230,6 @@
     padding: 2px 0 2px 14px; margin-bottom: 10px;
     color: var(--text-dim); font-size: 14px;
   }
-
-  /* Quiz */
-  .take-quiz { margin-top: 22px; border-color: rgba(110,231,183,.4); color: var(--accent); }
-  .take-quiz:hover { background: rgba(110,231,183,.08); border-color: var(--accent); }
-  .quiz-wrap { margin-top: 14px; }
-  .quiz-wrap[hidden] { display: none; }
-  .question { margin-bottom: 16px; }
-  .question .q { font-size: 14.5px; font-weight: 500; margin-bottom: 9px; color: var(--text); }
-  .opts { display: grid; gap: 7px; }
-  .opt {
-    text-align: left; font-family: var(--body); font-size: 13.5px;
-    background: var(--bg-elev); border: 1px solid var(--border);
-    color: var(--text-dim); padding: 9px 13px; border-radius: 8px;
-    cursor: pointer; transition: .14s;
-  }
-  .opt:hover { border-color: var(--text-faint); color: var(--text); }
-  .opt.correct { border-color: var(--green); background: rgba(74,222,128,.1); color: var(--text); }
-  .opt.wrong { border-color: var(--red); background: rgba(248,113,113,.1); color: var(--text); }
-  .opt:disabled { cursor: default; }
-  .quiz-result {
-    margin-top: 12px; font-family: var(--mono); font-size: 13px;
-    padding: 10px 14px; border-radius: 8px; display: none;
-    align-items: center; flex-wrap: wrap; gap: 6px;
-  }
-  .quiz-result.show { display: flex; }
-  .quiz-result.pass { background: rgba(74,222,128,.12); color: var(--green); border: 1px solid rgba(74,222,128,.3); }
-  .quiz-result.fail { background: rgba(248,113,113,.12); color: var(--red); border: 1px solid rgba(248,113,113,.3); }
-  .retry-btn {
-    margin-left: auto; font-family: var(--body); font-size: 12px;
-    background: transparent; border: 1px solid currentColor; color: inherit;
-    padding: 3px 10px; border-radius: 6px; cursor: pointer;
-  }
-  .retry-btn:hover { background: rgba(127,127,127,.12); }
 
   /* FAQ / resources */
   .panel {
@@ -332,6 +282,73 @@
   .modal-got { margin-top: 18px; width: 100%; justify-content: center; }
   .ver-link { background: transparent; border: none; color: var(--text-faint); font-family: var(--mono); font-size: 13px; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; padding: 0; }
   .ver-link:hover { color: var(--accent-2); }
+
+  /* Read-only concept list */
+  ul.points { list-style: none; margin: 0 0 8px; }
+  ul.points li { position: relative; padding-left: 20px; margin-bottom: 8px; color: var(--text-dim); font-size: 14px; }
+  ul.points li::before { content: "▸"; position: absolute; left: 0; color: var(--accent-2); }
+  .topic-subtle { font-size: 12.5px; color: var(--text-faint); margin: 0 0 12px; }
+
+  /* Controls: search + filters */
+  .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 0 0 16px; }
+  .search-box { position: relative; flex: 1; min-width: 200px; }
+  .search-box input { width: 100%; font-family: var(--body); font-size: 14px; background: var(--bg-card); border: 1px solid var(--border); color: var(--text); padding: 10px 12px 10px 34px; border-radius: 9px; }
+  .search-box input:focus { border-color: var(--accent-2); outline: none; }
+  .search-box .si { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); color: var(--text-faint); font-size: 13px; }
+  .filter-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .filter-chip { font-family: var(--body); font-size: 12.5px; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-dim); padding: 7px 11px; border-radius: 999px; cursor: pointer; transition: .14s; }
+  .filter-chip:hover { border-color: var(--text-faint); color: var(--text); }
+  .filter-chip.active { background: rgba(110,231,183,.12); border-color: var(--accent); color: var(--accent); }
+  .no-results { color: var(--text-faint); font-size: 14px; padding: 18px 4px; }
+  .no-results[hidden] { display: none; }
+
+  /* Per-level progress + complete banner */
+  .level-progress { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .level-progress .lvl { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 11px; color: var(--text-dim); border: 1px solid var(--border); border-radius: 7px; padding: 4px 8px; }
+  .level-progress .lvl.full { color: var(--accent); border-color: rgba(110,231,183,.4); }
+  .complete-banner { margin-top: 14px; background: rgba(110,231,183,.1); border: 1px solid rgba(110,231,183,.35); color: var(--accent); border-radius: 10px; padding: 12px 16px; font-size: 14px; font-weight: 500; }
+  .complete-banner[hidden] { display: none; }
+
+  /* Topic header extras */
+  .icon-btn { background: transparent; border: 1px solid var(--border); color: var(--text-faint); border-radius: 7px; padding: 3px 7px; font-size: 12px; cursor: pointer; line-height: 1; transition: .14s; }
+  .icon-btn:hover { color: var(--text); border-color: var(--text-faint); }
+  .studied-tick { color: var(--accent); font-weight: 700; }
+  .studied-tick[hidden] { display: none; }
+  .studied-row { margin-top: 22px; }
+  .studied-toggle.is-done { border-color: rgba(110,231,183,.45); color: var(--accent); }
+
+  /* Back to top */
+  .to-top { position: fixed; right: 18px; bottom: 18px; z-index: 30; width: 42px; height: 42px; border-radius: 50%; background: var(--bg-card); border: 1px solid var(--border); color: var(--text); font-size: 18px; cursor: pointer; box-shadow: var(--shadow); display: flex; align-items: center; justify-content: center; }
+  .to-top:hover { border-color: var(--text-faint); }
+  .to-top[hidden] { display: none; }
+
+  /* Glossary */
+  .glossary-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 22px; }
+  @media (max-width: 620px) { .glossary-list { grid-template-columns: 1fr; } }
+  .gl-term { font-size: 14px; line-height: 1.5; }
+  .gl-term b { color: var(--text); font-weight: 600; }
+  .gl-term span { color: var(--text-dim); }
+
+  /* Sync modal */
+  .modal-lede { color: var(--text-dim); font-size: 14px; margin-bottom: 6px; }
+  .sync-section h4 { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-2); margin: 16px 0 8px; }
+  .sync-ta { width: 100%; min-height: 64px; font-family: var(--mono); font-size: 12px; background: var(--bg-elev); border: 1px solid var(--border); color: var(--text); border-radius: 9px; padding: 10px; resize: vertical; }
+  .sync-row { display: flex; gap: 8px; margin-top: 8px; }
+  .import-msg { font-size: 12.5px; margin-top: 8px; font-family: var(--mono); }
+  .import-msg.ok { color: var(--accent); }
+  .import-msg.warn { color: var(--red); }
+
+  /* Print-friendly */
+  @media print {
+    header::before, .toolbar, .controls, .progress-bar-wrap, .level-progress, .complete-banner, .legend, .hint-line, .to-top, .modal-overlay, .ver-link, .copy-link, .studied-row, .caret { display: none !important; }
+    body { background: #fff; color: #000; }
+    .topic, .panel { border-color: #ccc; break-inside: avoid; }
+    .topic-body { display: block !important; }
+    .res-link, .free-link, .chip, .chip-count, .topic-subtle { color: #000 !important; border-color: #bbb !important; }
+    a { color: #000 !important; text-decoration: underline; }
+    .badge-new, .studied-tick { display: none !important; }
+    h1, .topic-title h2, .gl-term b { color: #000 !important; }
+  }
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -342,22 +359,26 @@
 <header>
   <div class="wrap hero">
     <div class="eyebrow">
-      <span>10 topics</span><span>·</span><span>90 concepts to tick off</span><span>·</span><span>30 quiz questions</span><span>·</span><span>progress saved in your browser</span>
+      <span>10 topics</span><span>·</span><span>4 levels</span><span>·</span><span>90 concepts</span><span>·</span><span>progress saved in your browser</span>
     </div>
     <h1>AI Agents <span class="grad">Study Roadmap</span></h1>
     <div class="byline">Made by Kaio for the CS team, with much care 💚</div>
-    <p class="lede">From building the mental model to measuring agents in production. Tick off each concept as you study it, take a quiz per topic, and follow the free resources. Anything added since your last visit shows up marked NEW. Share the link — everyone keeps their own progress, saved locally in their browser.</p>
+    <p class="lede">From the mental model to running agents in production. Skim the concepts, follow the free resources, mark each topic as studied, and filter to find what is left. Anything added since your last visit is marked NEW. Share the link — everyone keeps their own progress in their browser, and you can sync it across devices.</p>
 
     <div class="toolbar">
       <button class="btn" id="theme-toggle">🌙 <span id="theme-label">Dark</span></button>
       <button class="btn" id="expand-all">⬇ Expand all</button>
+      <button class="btn accent" id="continue-btn" hidden>▶ Continue where I left off</button>
+      <button class="btn" id="open-sync">⇅ Sync progress</button>
       <button class="btn accent" id="dismiss-new" hidden>✓ Mark all as seen</button>
       <button class="btn danger" id="reset">🗑️ Reset progress</button>
     </div>
 
     <div class="progress-bar-wrap">
-      <div class="progress-meta"><span id="progress-text">0 / 90 concepts studied</span><span id="progress-pct">0%</span></div>
+      <div class="progress-meta"><span id="progress-text">0 / 10 topics studied</span><span id="progress-pct">0%</span></div>
       <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      <div class="level-progress" id="level-progress"></div>
+      <div class="complete-banner" id="complete-banner" hidden>🎉 You have studied every topic — nice work. Revisit anything anytime.</div>
     </div>
 
     <div class="legend">
@@ -365,24 +386,61 @@
       <span><i class="dot yellow"></i> Intermediate</span>
       <span><i class="dot red"></i> Advanced</span>
     </div>
-    <div class="hint-line">Tick off concepts as you study them. <span class="badge-new">NEW</span> marks anything added since your last visit — it clears once you open that topic.</div>
+    <div class="hint-line">Mark a topic as studied to track your progress. <span class="badge-new">NEW</span> marks anything added since your last visit — it clears once you open that topic.</div>
   </div>
 </header>
 
 <main class="wrap">
   <div class="section-label">The Path</div>
+  <div class="controls">
+    <div class="search-box"><span class="si">🔍</span><input type="text" id="search" placeholder="Search topics and concepts…" aria-label="Search topics and concepts"></div>
+    <div class="filter-chips">
+      <button class="filter-chip active" type="button" data-filter="all">All</button>
+      <button class="filter-chip" type="button" data-filter="unstudied">To study</button>
+      <button class="filter-chip" type="button" data-filter="new">New</button>
+      <button class="filter-chip" type="button" data-filter="green">Foundational</button>
+      <button class="filter-chip" type="button" data-filter="yellow">Intermediate</button>
+      <button class="filter-chip" type="button" data-filter="red">Advanced</button>
+      <button class="filter-chip" type="button" data-filter="purple">Capstone</button>
+    </div>
+  </div>
   <div id="topics"></div>
+  <div class="no-results" id="no-results" hidden>No topics match your search or filter.</div>
 
   <div class="section-label">Reference</div>
 
   <div class="panel">
     <h3>❓ FAQ</h3>
     <details><summary>Do I need to do the topics in order?</summary><p>Mostly yes. Fundamentals and Prompt Engineering are the base everything builds on. Handoff, Feedback Loops, and Orchestration assume you already understand how a single agent behaves and how to evaluate it. The colored dots show the rough difficulty climb.</p></details>
-    <details><summary>How do the checkmarks work?</summary><p>Under "What to study," tick off each concept as you learn it. The count on each topic (e.g. 5/9) and the overall bar update as you go, and a topic turns green when you've checked everything in it. Use "Mark all as studied" to tick a whole topic at once.</p></details>
+    <details><summary>How do I track what I've studied?</summary><p>Open a topic and hit "Mark as studied" at the bottom — the topic turns green and the overall and per-level progress update. Use the filters (To study / New / by level) to find what is left, and "Continue where I left off" to jump to the next unstudied topic.</p></details>
     <details><summary>What does the NEW badge mean?</summary><p>It flags anything added since your last visit — a new topic, a new concept, or a new resource. It's worked out automatically per person from what you saw before, so you never need to be told what changed. Opening the topic clears its NEW marks, or use "Mark all as seen" to clear them all at once.</p></details>
     <details><summary>If the page is updated, do I lose my progress?</summary><p>No. Your checkmarks live in your browser and are keyed to each item's stable ID, not its position — so the author can add, reorder, or expand content and republish freely without touching what you've saved. Only clearing your browser data or hitting "Reset progress" wipes it. (After an update you may need a hard refresh — Ctrl/Cmd+Shift+R — to see the newest version; that only affects what you see, not your saved progress.)</p></details>
-    <details><summary>How do the quizzes work?</summary><p>Each topic has a "Take Quiz" button that opens a short quiz. Click an option to lock in an answer. After the last question you'll see your score — you need 80% to pass. Hit ↻ Retry to go again as many times as you want.</p></details>
+    <details><summary>Can I study on more than one device?</summary><p>Yes — your progress lives in each browser, so open "Sync progress," copy your code on one device, and paste it on another to carry your studied topics across. No account needed.</p></details>
     <details><summary>Can I share this, and do I need an API?</summary><p>Share the link freely — each visitor keeps their own progress on their own device, no account or server. The concepts apply to any LLM-based agent; to try things hands-on, any chat model with an API works, or mock the responses to practice the architecture.</p></details>
+  </div>
+
+  <div class="panel">
+    <h3>📖 Glossary</h3>
+    <div class="glossary-list">
+      <div class="gl-term"><b>Token</b> — <span>the unit a model reads and writes in; text is split into tokens.</span></div>
+      <div class="gl-term"><b>Context window</b> — <span>the finite amount of tokens a model can consider at once.</span></div>
+      <div class="gl-term"><b>Embedding</b> — <span>a vector representation of text used to compare meaning.</span></div>
+      <div class="gl-term"><b>Vector search</b> — <span>finding the closest chunks to a query by semantic similarity.</span></div>
+      <div class="gl-term"><b>RAG</b> — <span>retrieval-augmented generation: fetch relevant context, then answer from it.</span></div>
+      <div class="gl-term"><b>Chunking</b> — <span>splitting documents into pieces the retriever can index and find.</span></div>
+      <div class="gl-term"><b>Hallucination</b> — <span>confident output that is not grounded in fact.</span></div>
+      <div class="gl-term"><b>Temperature</b> — <span>how random a model's sampling is; low is more deterministic.</span></div>
+      <div class="gl-term"><b>Few-shot</b> — <span>giving examples in the prompt to shape format and behavior.</span></div>
+      <div class="gl-term"><b>Chain-of-thought</b> — <span>asking the model to reason step by step before answering.</span></div>
+      <div class="gl-term"><b>Function calling</b> — <span>letting a model invoke structured tools or APIs.</span></div>
+      <div class="gl-term"><b>Agent loop</b> — <span>observe, decide, act, repeat — what makes an agent an agent.</span></div>
+      <div class="gl-term"><b>LLM-as-judge</b> — <span>using a model to score outputs against a rubric.</span></div>
+      <div class="gl-term"><b>Eval</b> — <span>a repeatable test of output quality you run on every change.</span></div>
+      <div class="gl-term"><b>RLHF</b> — <span>reinforcement learning from human feedback to shape behavior.</span></div>
+      <div class="gl-term"><b>Prompt injection</b> — <span>hidden instructions in input that try to override the system prompt.</span></div>
+      <div class="gl-term"><b>Guardrails</b> — <span>checks that keep an agent safe, on-topic, and within limits.</span></div>
+      <div class="gl-term"><b>p95 / p99</b> — <span>tail latency: the slowest 5% / 1% of requests, which averages hide.</span></div>
+    </div>
   </div>
 
   <div class="panel">
@@ -417,8 +475,30 @@
 </main>
 
 <footer>
-  AI Agents Roadmap · hosted on GitHub Pages · progress stored locally in your browser · <button class="ver-link" id="open-changelog" type="button">v1.2 — what's new</button>
+  AI Agents Roadmap · hosted on GitHub Pages · progress stored locally in your browser · <button class="ver-link" id="open-changelog" type="button">v1.3 — what's new</button>
 </footer>
+
+<button class="to-top" id="to-top" type="button" aria-label="Back to top" hidden>↑</button>
+
+<div class="modal-overlay" id="sync-modal" hidden>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="sync-title">
+    <button class="modal-close" id="sync-close" type="button" aria-label="Close">×</button>
+    <div class="modal-eyebrow">Sync progress</div>
+    <h2 class="modal-title" id="sync-title">Move progress between devices</h2>
+    <p class="modal-lede">Your progress lives in this browser. Copy your code on one device and paste it on another to carry your studied topics over — no account needed.</p>
+    <div class="sync-section">
+      <h4>Export — copy this code</h4>
+      <textarea class="sync-ta" id="export-code" readonly></textarea>
+      <div class="sync-row"><button class="btn" id="copy-export" type="button">Copy</button></div>
+    </div>
+    <div class="sync-section">
+      <h4>Import — paste a code</h4>
+      <textarea class="sync-ta" id="import-code" placeholder="Paste a code here…"></textarea>
+      <div class="sync-row"><button class="btn accent" id="do-import" type="button">Import</button></div>
+      <div class="import-msg" id="import-msg"></div>
+    </div>
+  </div>
+</div>
 
 <div class="modal-overlay" id="changelog-modal" hidden>
   <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="cl-title">
@@ -436,6 +516,8 @@ const TOPICS = [
     id: "fundamentals", level: "green", levelText: "Foundational",
     title: "AI Fundamentals",
     sub: "How LLMs and agents actually work under the hood",
+    time: "~20 min",
+    prereq: [],
     intro: "Before building agents, build the mental model. An <strong>LLM</strong> predicts the next token; an <strong>agent</strong> wraps that model in a loop that can reason, call tools, and act on the result. Knowing the difference keeps you from blaming the model for what is really an architecture problem.",
     points: [
       { id: "tokens", t: "<strong>Tokens & context window:</strong> models read and write in tokens, and the context window is finite — system prompt, history, and tool outputs all compete for it." },
@@ -463,17 +545,14 @@ const TOPICS = [
       { label: "Hugging Face — AI Agents Course (free)", url: "https://huggingface.co/learn/agents-course" },
       { label: "Google — Machine Learning Crash Course (free)", url: "https://developers.google.com/machine-learning/crash-course" },
       { label: "Elements of AI (free intro course)", url: "https://www.elementsofai.com/" }
-    ],
-    quiz: [
-      { q: "What fundamentally turns an LLM into an 'agent'?", opts: ["A bigger context window", "A loop that lets it call tools and act on results", "Fine-tuning on more data", "A higher temperature setting"], a: 1 },
-      { q: "Why does a long conversation eventually degrade an agent's behavior?", opts: ["The model gets tired", "Earlier context gets pushed out of the finite context window", "Temperature increases automatically", "Tools stop responding"], a: 1 },
-      { q: "Where does an LLM-based agent's 'memory' actually live between API calls?", opts: ["Inside the model weights", "In whatever you pass into the next request", "In the GPU cache", "It is remembered automatically"], a: 1 }
     ]
   },
   {
     id: "prompt-eng", level: "green", levelText: "Foundational",
     title: "Prompt Engineering",
     sub: "Getting reliable behavior out of a model with words",
+    time: "~20 min",
+    prereq: ["fundamentals"],
     intro: "Prompting is the interface to an agent's behavior. Most 'the model is dumb' moments are really 'the prompt was ambiguous' moments. The goal is to make the desired behavior the path of least resistance.",
     points: [
       { id: "specific", t: "<strong>Be specific about role, task, and format:</strong> tell the model who it is, what to do, and exactly how to return it." },
@@ -502,17 +581,14 @@ const TOPICS = [
       { label: "OpenAI Cookbook", url: "https://cookbook.openai.com/" },
       { label: "Brex — Prompt engineering guide", url: "https://github.com/brexhq/prompt-engineering" },
       { label: "OpenAI — Prompt engineering guide", url: "https://platform.openai.com/docs/guides/prompt-engineering" }
-    ],
-    quiz: [
-      { q: "Why do few-shot examples often beat longer written instructions?", opts: ["They use fewer tokens always", "They demonstrate the exact format and edge cases", "They make the model faster", "They disable hallucination"], a: 1 },
-      { q: "When should you ask a model to reason step-by-step before answering?", opts: ["For simple lookups", "For multi-step or logical tasks", "Never — it wastes tokens", "Only for creative writing"], a: 1 },
-      { q: "You need the output consumed by another program. What should the prompt do?", opts: ["Ask for a friendly paragraph", "Request a defined schema like JSON", "Raise the temperature", "Add more emojis"], a: 1 }
     ]
   },
   {
     id: "evaluating", level: "green", levelText: "Foundational",
     title: "Evaluating AI Responses",
     sub: "Knowing whether the output is actually good",
+    time: "~20 min",
+    prereq: ["fundamentals", "prompt-eng"],
     intro: "You can't improve what you don't measure. Evaluation is how you turn 'it feels better' into evidence. Without it, every prompt change is a guess and every deploy is a gamble.",
     points: [
       { id: "groundtruth", t: "<strong>Ground truth vs. reference-free:</strong> some tasks have a correct answer to check against; others need judgment-based scoring." },
@@ -541,17 +617,14 @@ const TOPICS = [
       { label: "LangSmith — Evaluation docs", url: "https://docs.smith.langchain.com/evaluation" },
       { label: "Arize Phoenix (open source)", url: "https://github.com/Arize-ai/phoenix" },
       { label: "Eugene Yan — LLM patterns (incl. evals)", url: "https://eugeneyan.com/writing/llm-patterns/" }
-    ],
-    quiz: [
-      { q: "What is the main purpose of an eval dataset?", opts: ["To train the model", "To re-run on every change and catch regressions", "To increase the context window", "To replace prompting"], a: 1 },
-      { q: "What's the biggest risk with 'LLM-as-judge'?", opts: ["It's too slow to use", "An unclear rubric makes the scores unreliable", "It can only score JSON", "It never makes mistakes"], a: 1 },
-      { q: "A reference-free evaluation is needed when…", opts: ["There is one objectively correct answer", "The task is subjective and has no single ground truth", "You are extracting numbers", "You never deploy"], a: 1 }
     ]
   },
   {
     id: "rag-grounding", level: "yellow", levelText: "Intermediate",
     title: "RAG & Knowledge Grounding",
     sub: "Answering from your knowledge base instead of guessing",
+    time: "~25 min",
+    prereq: ["fundamentals", "prompt-eng"],
     intro: "Grounding an agent means making it answer from real sources — your help center, docs, past tickets — instead of from the model's memory. Retrieval-Augmented Generation (RAG) fetches the right context at query time and feeds it to the model, which cuts hallucination and lets you update knowledge without retraining.",
     points: [
       { id: "retrieval", t: "<strong>Why retrieval:</strong> instead of relying on the model's frozen training, fetch relevant text at query time so answers reflect your current, specific knowledge." },
@@ -579,17 +652,14 @@ const TOPICS = [
       { label: "Ragas — RAG evaluation", url: "https://docs.ragas.io/" },
       { label: "Anthropic — Contextual Retrieval", url: "https://www.anthropic.com/news/contextual-retrieval" },
       { label: "Hugging Face — Learn (free courses)", url: "https://huggingface.co/learn" }
-    ],
-    quiz: [
-      { q: "What problem does RAG mainly solve?", opts: ["Making the model faster", "Grounding answers in current, specific sources to reduce hallucination", "Removing the need for prompts", "Training the model from scratch"], a: 1 },
-      { q: "If a RAG answer is wrong, what should you check first?", opts: ["The model temperature", "Whether the right chunk was actually retrieved", "The font size", "The API key"], a: 1 },
-      { q: "Why combine vector search with keyword search (hybrid)?", opts: ["To use more GPUs", "To catch both semantic meaning and exact terms like error codes", "To avoid citations", "To skip chunking"], a: 1 }
     ]
   },
   {
     id: "metrics", level: "yellow", levelText: "Intermediate",
     title: "AI Performance Metrics",
     sub: "Measuring agents in production: quality, cost, latency",
+    time: "~20 min",
+    prereq: ["evaluating"],
     intro: "Evaluation tells you if an answer is good; metrics tell you how the whole system performs at scale and over time. You're balancing three competing axes — quality, latency, and cost — and you can't optimize one without watching the others.",
     points: [
       { id: "quality", t: "<strong>Quality metrics:</strong> task success rate, eval pass rate, escalation rate, user satisfaction." },
@@ -617,17 +687,14 @@ const TOPICS = [
       { label: "OpenTelemetry — tracing standard", url: "https://opentelemetry.io/" },
       { label: "Weights & Biases — Weave (LLM monitoring)", url: "https://wandb.ai/site/weave/" },
       { label: "Grafana — dashboards & metrics", url: "https://grafana.com/" }
-    ],
-    quiz: [
-      { q: "Which three axes are you usually trading off in production?", opts: ["Color, font, layout", "Quality, latency, and cost", "Tokens, weights, GPUs", "Users, agents, tools"], a: 1 },
-      { q: "Why does a multi-tool agent often have surprising cost?", opts: ["Tools charge per click", "Each step adds tokens and calls that multiply by volume", "Latency lowers cost", "The model charges extra for JSON"], a: 1 },
-      { q: "What does tracing give you that an aggregate metric can't?", opts: ["A single overall score", "The step-by-step view to debug specific slow or wrong runs", "Lower token cost", "Automatic fine-tuning"], a: 1 }
     ]
   },
   {
     id: "safety", level: "red", levelText: "Advanced",
     title: "Safety, Guardrails & Prompt Injection",
     sub: "Keeping an agent safe, on-topic, and hard to manipulate",
+    time: "~25 min",
+    prereq: ["fundamentals", "prompt-eng"],
     intro: "An agent in front of real users needs guardrails: protecting private data, staying on-topic, and resisting manipulation. Prompt injection — hiding instructions inside user input or retrieved content — is the signature new attack, and there is no single fix, so you defend in layers.",
     points: [
       { id: "injection", t: "<strong>Prompt injection:</strong> malicious instructions hidden in user input that try to override your system prompt — the defining LLM attack." },
@@ -655,17 +722,14 @@ const TOPICS = [
       { label: "promptfoo — red-teaming & security", url: "https://www.promptfoo.dev/" },
       { label: "Anthropic — Constitutional AI", url: "https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback" },
       { label: "OpenAI — Moderation guide", url: "https://platform.openai.com/docs/guides/moderation" }
-    ],
-    quiz: [
-      { q: "What is prompt injection?", opts: ["A way to speed up prompts", "Hidden instructions in input or content that try to override the system prompt", "A type of fine-tuning", "A caching technique"], a: 1 },
-      { q: "How should you treat content the agent retrieves (docs, tickets)?", opts: ["Fully trusted", "Untrusted input, like any web form data", "Ignore it entirely", "Trust it only if it is long"], a: 1 },
-      { q: "Why give an agent least-privilege tool access?", opts: ["It is cheaper", "So a single chat turn cannot trigger an unbounded or dangerous action", "It improves grammar", "Models require it"], a: 1 }
     ]
   },
   {
     id: "handoff", level: "red", levelText: "Advanced",
     title: "Human-AI Handoff",
     sub: "Knowing when to escalate to a person — and doing it cleanly",
+    time: "~20 min",
+    prereq: ["fundamentals"],
     intro: "A mature agent knows its limits. Handoff is the design of when and how an agent passes control to a human — for safety, for ambiguity, or for decisions that need accountability. Done badly, it either escalates everything or nothing.",
     points: [
       { id: "signals", t: "<strong>Confidence & uncertainty signals:</strong> low tool-call success, repeated retries, or explicit 'I'm not sure' are triggers to escalate." },
@@ -693,17 +757,14 @@ const TOPICS = [
       { label: "Nielsen Norman Group — AI & UX", url: "https://www.nngroup.com/topic/ai/" },
       { label: "IBM — What is human-in-the-loop?", url: "https://www.ibm.com/think/topics/human-in-the-loop" },
       { label: "LangGraph — Human-in-the-loop how-tos", url: "https://langchain-ai.github.io/langgraph/how-tos/" }
-    ],
-    quiz: [
-      { q: "What's the cleanest signal that an agent should escalate to a human?", opts: ["The conversation is long", "Repeated failures, low confidence, or a policy-defined trigger", "The user typed in caps", "It's after business hours"], a: 1 },
-      { q: "When handing off, what should the human receive?", opts: ["Only the last user message", "Full conversation plus the agent's reasoning", "Nothing — start fresh", "Just a ticket number"], a: 1 },
-      { q: "What is 'human-in-the-loop approval'?", opts: ["A human writes every reply", "The agent proposes a risky action and a human approves it first", "Users rate the bot", "The model trains on humans"], a: 1 }
     ]
   },
   {
     id: "feedback", level: "red", levelText: "Advanced",
     title: "AI Feedback Loops",
     sub: "Turning real usage into a better agent over time",
+    time: "~20 min",
+    prereq: ["evaluating"],
     intro: "Agents don't improve by themselves — feedback loops close the gap between what they do and what users actually wanted. The trick is capturing signal cheaply and feeding it back without creating drift or bias.",
     points: [
       { id: "explicit", t: "<strong>Explicit feedback:</strong> thumbs up/down, corrections, ratings — high signal, low volume." },
@@ -731,17 +792,14 @@ const TOPICS = [
       { label: "DeepLearning.AI — RLHF (free short course)", url: "https://www.deeplearning.ai/short-courses/reinforcement-learning-from-human-feedback/" },
       { label: "OpenAI — Instruction following (InstructGPT)", url: "https://openai.com/index/instruction-following/" },
       { label: "Anthropic — Constitutional AI", url: "https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback" }
-    ],
-    quiz: [
-      { q: "Implicit feedback is best described as…", opts: ["Thumbs up/down buttons", "Behavioral signals like retries and abandonment", "Survey responses", "Fine-tuning data"], a: 1 },
-      { q: "A safe first place to route new feedback is…", opts: ["Straight into fine-tuning every night", "New eval cases and prompt/few-shot updates", "Deleting old logs", "Raising temperature"], a: 1 },
-      { q: "What is a key risk of a naive feedback loop?", opts: ["It costs nothing", "It reinforces the majority and erases edge cases", "It improves too fast", "It removes the need for evals"], a: 1 }
     ]
   },
   {
     id: "orchestration", level: "red", levelText: "Advanced",
     title: "Agent Orchestration",
     sub: "Coordinating multiple agents, tools, and steps",
+    time: "~25 min",
+    prereq: ["fundamentals", "prompt-eng"],
     intro: "One agent in a loop is the easy case. Real systems coordinate several specialized agents, tools, and control flow. Orchestration is the architecture that decides who does what, in what order, and how state moves between them.",
     points: [
       { id: "singlemulti", t: "<strong>Single-agent vs. multi-agent:</strong> add agents only when a task truly splits into specialized roles — more agents means more failure surface." },
@@ -770,17 +828,15 @@ const TOPICS = [
       { label: "LlamaIndex — docs", url: "https://docs.llamaindex.ai/" },
       { label: "OpenAI — Swarm (educational multi-agent)", url: "https://github.com/openai/swarm" },
       { label: "LangChain — Agents concepts", url: "https://python.langchain.com/docs/concepts/agents/" }
-    ],
-    quiz: [
-      { q: "When is adding more agents the wrong move?", opts: ["When the task splits into clear specialized roles", "When one loop already handles it — extra agents just add failure surface", "When you have budget", "When the model supports tools"], a: 1 },
-      { q: "A 'supervisor' orchestration pattern means…", opts: ["A human watches everything", "One agent delegates subtasks to specialist agents", "Agents vote", "No agent has memory"], a: 1 },
-      { q: "Why hard-code control flow on critical paths?", opts: ["It looks more professional", "To get determinism and avoid the model improvising on high-stakes steps", "It uses fewer tokens", "Models can't do branching"], a: 1 }
     ]
   },
   {
     id: "cs-applied", level: "purple", levelText: "Capstone",
     title: "AI for Customer Support",
     sub: "Putting it all together in a real support workflow",
+    time: "~30 min",
+    prereqText: "Everything above — it pulls the whole roadmap together",
+    prereq: [],
     intro: "This capstone applies everything above to the work a support team actually does. A support agent is not one feature — it is triage, drafting, summarizing, grounding answers in your help center, knowing when to hand off, and being measured on resolution, not just words.",
     points: [
       { id: "usecases", t: "<strong>Where AI fits in support:</strong> ticket triage, reply drafting, conversation summaries, knowledge-base answers, and post-resolution QA — pick the highest-value one first." },
@@ -808,18 +864,13 @@ const TOPICS = [
       { label: "DeepLearning.AI — Free short courses", url: "https://www.deeplearning.ai/short-courses/" },
       { label: "Google PAIR — People + AI Guidebook", url: "https://pair.withgoogle.com/guidebook/" },
       { label: "promptfoo — eval your support bot", url: "https://www.promptfoo.dev/" }
-    ],
-    quiz: [
-      { q: "What is the safer way to roll out AI in support first?", opts: ["Full autopilot to all customers", "Copilot: assist agents with suggested replies before unsupervised responses", "Replace the whole team", "Only on weekends"], a: 1 },
-      { q: "Which metric best reflects real success?", opts: ["How human the text sounds", "Resolution rate and CSAT, not just deflection", "Number of tokens used", "Response length"], a: 1 },
-      { q: "How should a support agent answer policy questions?", opts: ["From the model memory", "Grounded in the help center and macros, with citations", "By guessing politely", "By escalating everything"], a: 1 }
     ]
   }
 ];
 
 const STORE_KEY = "ai-agents-roadmap-v1";
 let state = JSON.parse(localStorage.getItem(STORE_KEY) || "{}");
-if (!state.checked || typeof state.checked !== "object") state.checked = {};
+if (!state.studied || typeof state.studied !== "object") state.studied = {};
 function save() { localStorage.setItem(STORE_KEY, JSON.stringify(state)); }
 
 // ---- Stable keys (never tied to position) ----
@@ -842,55 +893,48 @@ function allKeys() {
   return ks;
 }
 
-// ---- Migrate older saves (topic-level "done" flag -> tick all its concepts) ----
-TOPICS.forEach(t => {
-  if (state[t.id] === true) {
-    t.points.forEach(p => { state.checked[pointKey(t, p)] = true; });
-    delete state[t.id];
-  }
-});
+// ---- Migrate older saves to topic-level "studied" ----
+TOPICS.forEach(t => { if (state[t.id] === true) { state.studied[t.id] = true; delete state[t.id]; } });
+if (state.checked && typeof state.checked === "object") {
+  TOPICS.forEach(t => { if (t.points.every(p => state.checked[pointKey(t, p)])) state.studied[t.id] = true; });
+  delete state.checked;
+  save();
+}
 
-// ---- NEW detection: baseline = what was already seen on this device ----
+// ---- NEW detection baseline ----
 const currentKeys = allKeys();
 let seen;
-if (!Array.isArray(state.seen)) {
-  // first run of this feature (or brand-new visitor): treat everything as already seen
-  seen = new Set(currentKeys);
-  state.seen = currentKeys;
-  save();
-} else {
-  seen = new Set(state.seen);
-}
+if (!Array.isArray(state.seen)) { seen = new Set(currentKeys); state.seen = currentKeys; save(); }
+else seen = new Set(state.seen);
 const isNew = key => !seen.has(key);
-
-const CHECK = '<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6.5l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const newPill = ' <span class="badge-new is-new">NEW</span>';
 
 const topicById = Object.fromEntries(TOPICS.map(t => [t.id, t]));
+const LEVELS = [
+  { key: "green", label: "Foundational" },
+  { key: "yellow", label: "Intermediate" },
+  { key: "red", label: "Advanced" },
+  { key: "purple", label: "Capstone" }
+];
 const container = document.getElementById("topics");
 
 TOPICS.forEach((t, i) => {
   const el = document.createElement("div");
-  el.className = "topic";
+  el.className = "topic" + (state.studied[t.id] ? " done" : "");
   el.dataset.id = t.id;
+  el.dataset.level = t.level;
+  el.id = "topic-" + t.id;
 
-  const topicNew = isNew(topicKey(t));                 // brand-new topic
-  const childTag = key => (!topicNew && isNew(key)) ? newPill : "";  // suppress child pills if whole topic is new
+  const topicNew = isNew(topicKey(t));
+  const childTag = key => (!topicNew && isNew(key)) ? newPill : "";
+
+  const prereqNames = (t.prereq || []).map(id => topicById[id] ? topicById[id].title : id);
+  const prereqStr = t.prereqText ? t.prereqText : (prereqNames.length ? prereqNames.join(", ") : "None — start here");
 
   const studyHTML = `
-    <div class="block-label">📖 What to study <span class="bl-hint">· tick off what you've covered</span></div>
-    <div class="study-list">
-      ${t.points.map(p => {
-        const k = pointKey(t, p);
-        const checked = !!state.checked[k];
-        return `<label class="study-item${checked ? " done" : ""}" data-key="${k}">
-          <input type="checkbox" class="item-cb"${checked ? " checked" : ""}>
-          <span class="checkbox">${CHECK}</span>
-          <span class="item-text">${p.t}${childTag(k)}</span>
-        </label>`;
-      }).join("")}
-    </div>
-    <div class="mark-all-wrap"><button class="btn-mini mark-all" type="button"></button></div>`;
+    <div class="block-label">📖 What to study</div>
+    <div class="topic-subtle">⏱ ${t.time} &nbsp;·&nbsp; Prerequisites: ${prereqStr}</div>
+    <ul class="points">${t.points.map(p => `<li>${p.t}${childTag(pointKey(t, p))}</li>`).join("")}</ul>`;
 
   const tipsHTML = `
     <div class="block-label">💡 Study tips</div>
@@ -903,30 +947,13 @@ TOPICS.forEach((t, i) => {
   const whereHTML = `
     <div class="block-label">🎥 Where to study</div>
     <div class="res-mini">Search — always up to date</div>
-    <div class="resources-row">
-      ${t.youtube.map(ytChip).join("")}
-      ${(t.google || []).map(ggChip).join("")}
-    </div>
+    <div class="resources-row">${t.youtube.map(ytChip).join("")}${(t.google || []).map(ggChip).join("")}</div>
     <div class="res-mini">Free resources</div>
-    <div class="free-links">
-      ${t.free.map(freeLink).join("")}
-    </div>`;
+    <div class="free-links">${t.free.map(freeLink).join("")}</div>`;
 
-  const quizHTML = `
-    <button class="btn take-quiz" type="button">📝 Take Quiz</button>
-    <div class="quiz-wrap" hidden>
-      ${t.quiz.map((q, qi) => `
-        <div class="question" data-q="${qi}">
-          <div class="q">${qi + 1}. ${q.q}</div>
-          <div class="opts">
-            ${q.opts.map((o, oi) => `<button class="opt" type="button" data-opt="${oi}">${o}</button>`).join("")}
-          </div>
-        </div>`).join("")}
-      <div class="quiz-result"></div>
-    </div>`;
-
+  const bodyId = "body-" + t.id;
   el.innerHTML = `
-    <div class="topic-head">
+    <div class="topic-head" role="button" tabindex="0" aria-expanded="false" aria-controls="${bodyId}">
       <div class="topic-num">${String(i + 1).padStart(2, "0")}</div>
       <div class="topic-title">
         <h2><span class="dot ${t.level}"></span> ${t.title}</h2>
@@ -934,162 +961,158 @@ TOPICS.forEach((t, i) => {
       </div>
       <div class="topic-meta">
         <span class="badge-new header-new" hidden>NEW</span>
-        <span class="chip-count">0/${t.points.length}</span>
+        <span class="studied-tick" title="Studied" hidden>✓</span>
+        <button class="icon-btn copy-link" type="button" title="Copy link to this topic" aria-label="Copy link to this topic">🔗</button>
         <span class="chip ${t.level}">${t.levelText}</span>
       </div>
       <svg class="caret" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
-    <div class="topic-body">
+    <div class="topic-body" id="${bodyId}">
       ${studyHTML}
       ${tipsHTML}
       ${whereHTML}
-      ${quizHTML}
+      <div class="studied-row"><button class="btn studied-toggle" type="button"></button></div>
     </div>`;
 
   container.appendChild(el);
-
   refreshHeaderBadge(el, t);
-  updateTopicProgress(el, t);
-  updateMarkAllLabel(el, t);
+  refreshStudied(el, t);
 
-  // Open / close — opening marks this topic's content as seen
-  el.querySelector(".topic-head").addEventListener("click", () => {
-    const opening = !el.classList.contains("open");
-    el.classList.toggle("open");
+  const head = el.querySelector(".topic-head");
+  function toggleOpen(forceOpen) {
+    const opening = forceOpen !== undefined ? forceOpen : !el.classList.contains("open");
+    el.classList.toggle("open", opening);
+    head.setAttribute("aria-expanded", opening ? "true" : "false");
     if (opening) {
       markTopicSeen(t);
       el.querySelectorAll(".badge-new.is-new").forEach(n => n.remove());
       refreshHeaderBadge(el, t);
       updateDismissBtn();
     }
+  }
+  head.addEventListener("click", e => { if (e.target.closest(".copy-link")) return; toggleOpen(); });
+  head.addEventListener("keydown", e => {
+    if (e.target.closest(".copy-link")) return;
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleOpen(); }
+  });
+  el._open = () => toggleOpen(true);
+
+  el.querySelector(".copy-link").addEventListener("click", e => {
+    e.stopPropagation();
+    const url = location.origin + location.pathname + "#topic-" + t.id;
+    if (navigator.clipboard) navigator.clipboard.writeText(url);
+    const b = e.currentTarget; b.textContent = "✓";
+    setTimeout(() => { b.textContent = "🔗"; }, 1200);
   });
 
-  // Concept checkmarks
-  el.querySelectorAll(".item-cb").forEach(cb => {
-    cb.addEventListener("change", () => {
-      const label = cb.closest(".study-item");
-      const k = label.dataset.key;
-      if (cb.checked) state.checked[k] = true; else delete state.checked[k];
-      label.classList.toggle("done", cb.checked);
-      save();
-      updateTopicProgress(el, t);
-      updateMarkAllLabel(el, t);
-      updateOverall();
-    });
-  });
-
-  // Mark all / clear all
-  el.querySelector(".mark-all").addEventListener("click", () => {
-    const total = t.points.length;
-    const done = t.points.filter(p => state.checked[pointKey(t, p)]).length;
-    const target = done < total;
-    el.querySelectorAll(".study-item").forEach(label => {
-      const k = label.dataset.key;
-      label.querySelector(".item-cb").checked = target;
-      label.classList.toggle("done", target);
-      if (target) state.checked[k] = true; else delete state.checked[k];
-    });
+  el.querySelector(".studied-toggle").addEventListener("click", () => {
+    if (!state.studied[t.id]) state.studied[t.id] = true; else delete state.studied[t.id];
     save();
-    updateTopicProgress(el, t);
-    updateMarkAllLabel(el, t);
+    refreshStudied(el, t);
     updateOverall();
-  });
-
-  // Quiz
-  el._quizState = {};
-  el.querySelectorAll(".question").forEach(qEl => {
-    const qi = +qEl.dataset.q;
-    qEl.querySelectorAll(".opt").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const qs = el._quizState;
-        if (qs[qi] !== undefined) return;
-        const chosen = +btn.dataset.opt;
-        const correct = t.quiz[qi].a;
-        qs[qi] = chosen === correct;
-        qEl.querySelectorAll(".opt").forEach((b, bi) => {
-          b.disabled = true;
-          if (bi === correct) b.classList.add("correct");
-          else if (bi === chosen) b.classList.add("wrong");
-        });
-        if (Object.keys(qs).length === t.quiz.length) {
-          const score = Object.values(qs).filter(Boolean).length;
-          const pct = Math.round((score / t.quiz.length) * 100);
-          const pass = pct >= 80;
-          const res = el.querySelector(".quiz-result");
-          res.className = "quiz-result show " + (pass ? "pass" : "fail");
-          res.innerHTML = `<span>${score}/${t.quiz.length} correct · ${pct}% · ${pass ? "Passed ✓" : "Keep studying"}</span><button class="retry-btn" type="button">↻ Retry</button>`;
-          res.querySelector(".retry-btn").addEventListener("click", () => resetQuiz(el));
-        }
-      });
-    });
-  });
-
-  const takeBtn = el.querySelector(".take-quiz");
-  const quizWrap = el.querySelector(".quiz-wrap");
-  takeBtn.addEventListener("click", () => {
-    if (quizWrap.hasAttribute("hidden")) {
-      quizWrap.removeAttribute("hidden");
-      resetQuiz(el);
-      takeBtn.textContent = "✕ Hide quiz";
-    } else {
-      quizWrap.setAttribute("hidden", "");
-      takeBtn.textContent = "📝 Take Quiz";
-    }
+    applyFilter();
   });
 });
 
-function resetQuiz(el) {
-  el._quizState = {};
-  el.querySelectorAll(".opt").forEach(b => { b.disabled = false; b.classList.remove("correct", "wrong"); });
-  const res = el.querySelector(".quiz-result");
-  res.className = "quiz-result";
-  res.innerHTML = "";
-}
-
-function updateTopicProgress(el, t) {
-  const total = t.points.length;
-  const done = t.points.filter(p => state.checked[pointKey(t, p)]).length;
-  el.querySelector(".chip-count").textContent = `${done}/${total}`;
-  el.classList.toggle("done", total > 0 && done === total);
-}
-
-function updateMarkAllLabel(el, t) {
-  const total = t.points.length;
-  const done = t.points.filter(p => state.checked[pointKey(t, p)]).length;
-  el.querySelector(".mark-all").textContent = done < total ? "Mark all as studied" : "Clear all";
-}
-
 function refreshHeaderBadge(el, t) {
-  const hasNew = isNew(topicKey(t)) || childKeys(t).some(isNew);
-  el.querySelector(".header-new").hidden = !hasNew;
+  el.querySelector(".header-new").hidden = !(isNew(topicKey(t)) || childKeys(t).some(isNew));
 }
-
+function refreshStudied(el, t) {
+  const done = !!state.studied[t.id];
+  el.classList.toggle("done", done);
+  el.querySelector(".studied-tick").hidden = !done;
+  const b = el.querySelector(".studied-toggle");
+  b.textContent = done ? "✓ Studied — click to unmark" : "Mark as studied";
+  b.classList.toggle("is-done", done);
+}
 function markTopicSeen(t) {
-  let changed = false;
-  [topicKey(t), ...childKeys(t)].forEach(k => { if (!seen.has(k)) { seen.add(k); changed = true; } });
-  if (changed) { state.seen = Array.from(seen); save(); }
+  let ch = false;
+  [topicKey(t), ...childKeys(t)].forEach(k => { if (!seen.has(k)) { seen.add(k); ch = true; } });
+  if (ch) { state.seen = Array.from(seen); save(); }
 }
-
 function updateDismissBtn() {
   document.getElementById("dismiss-new").hidden = !currentKeys.some(k => !seen.has(k));
 }
 
 function updateOverall() {
-  let total = 0, done = 0;
-  TOPICS.forEach(t => {
-    total += t.points.length;
-    done += t.points.filter(p => state.checked[pointKey(t, p)]).length;
-  });
+  const total = TOPICS.length;
+  const done = TOPICS.filter(t => state.studied[t.id]).length;
   const pct = total ? Math.round(done / total * 100) : 0;
-  document.getElementById("progress-text").textContent = `${done} / ${total} concepts studied`;
+  document.getElementById("progress-text").textContent = `${done} / ${total} topics studied`;
   document.getElementById("progress-pct").textContent = pct + "%";
   document.getElementById("progress-fill").style.width = pct + "%";
+  document.getElementById("level-progress").innerHTML = LEVELS.map(L => {
+    const ts = TOPICS.filter(t => t.level === L.key);
+    if (!ts.length) return "";
+    const d = ts.filter(t => state.studied[t.id]).length;
+    return `<span class="lvl ${L.key}${d === ts.length ? " full" : ""}"><i class="dot ${L.key}"></i>${L.label} ${d}/${ts.length}</span>`;
+  }).join("");
+  document.getElementById("complete-banner").hidden = !(done === total && total > 0);
+  const next = TOPICS.find(t => !state.studied[t.id]);
+  const cont = document.getElementById("continue-btn");
+  if (next) { cont.hidden = false; cont.dataset.target = next.id; } else cont.hidden = true;
 }
+
+// ---- Search + filter ----
+let activeFilter = "all";
+const searchInput = document.getElementById("search");
+function applyFilter() {
+  const q = (searchInput.value || "").trim().toLowerCase();
+  let shown = 0;
+  TOPICS.forEach(t => {
+    const el = document.getElementById("topic-" + t.id);
+    const text = (t.title + " " + t.sub + " " + t.points.map(p => p.t).join(" ")).toLowerCase();
+    const matchText = !q || text.includes(q);
+    let matchFilter = true;
+    if (activeFilter === "unstudied") matchFilter = !state.studied[t.id];
+    else if (activeFilter === "new") matchFilter = isNew(topicKey(t)) || childKeys(t).some(isNew);
+    else if (["green", "yellow", "red", "purple"].includes(activeFilter)) matchFilter = (t.level === activeFilter);
+    const show = matchText && matchFilter;
+    el.hidden = !show;
+    if (show) shown++;
+  });
+  document.getElementById("no-results").hidden = shown !== 0;
+}
+searchInput.addEventListener("input", applyFilter);
+document.querySelectorAll(".filter-chip").forEach(chip => {
+  chip.addEventListener("click", () => {
+    document.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("active"));
+    chip.classList.add("active");
+    activeFilter = chip.dataset.filter;
+    applyFilter();
+  });
+});
+
+document.getElementById("continue-btn").addEventListener("click", e => {
+  const id = e.currentTarget.dataset.target;
+  if (!id) return;
+  searchInput.value = "";
+  activeFilter = "all";
+  document.querySelectorAll(".filter-chip").forEach(c => c.classList.toggle("active", c.dataset.filter === "all"));
+  applyFilter();
+  const el = document.getElementById("topic-" + id);
+  el._open();
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
+});
 
 updateOverall();
 updateDismissBtn();
+applyFilter();
 
-// Dismiss all NEW at once
+function openFromHash() {
+  const h = location.hash;
+  if (h && h.indexOf("#topic-") === 0) {
+    const el = document.getElementById(h.slice(1));
+    if (el && el.classList.contains("topic")) { el._open(); el.scrollIntoView({ behavior: "smooth", block: "start" }); }
+  }
+}
+window.addEventListener("hashchange", openFromHash);
+openFromHash();
+
+const toTop = document.getElementById("to-top");
+window.addEventListener("scroll", () => { toTop.hidden = window.scrollY < 500; });
+toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
 document.getElementById("dismiss-new").addEventListener("click", () => {
   currentKeys.forEach(k => seen.add(k));
   state.seen = Array.from(seen); save();
@@ -1098,7 +1121,7 @@ document.getElementById("dismiss-new").addEventListener("click", () => {
   updateDismissBtn();
 });
 
-// Theme
+// ---- Theme ----
 const root = document.documentElement;
 applyTheme(localStorage.getItem("ai-roadmap-theme") || "dark");
 document.getElementById("theme-toggle").addEventListener("click", () => {
@@ -1111,41 +1134,105 @@ function applyTheme(theme) {
   document.getElementById("theme-label").textContent = theme === "light" ? "Light" : "Dark";
 }
 
-// Expand all (opening also clears NEW for those topics)
+// ---- Expand / collapse all ----
 let allOpen = false;
 document.getElementById("expand-all").addEventListener("click", e => {
   allOpen = !allOpen;
-  document.querySelectorAll(".topic").forEach(el => {
-    el.classList.toggle("open", allOpen);
-    if (allOpen) {
-      const t = topicById[el.dataset.id];
-      markTopicSeen(t);
-      el.querySelectorAll(".badge-new.is-new").forEach(n => n.remove());
-      el.querySelector(".header-new").hidden = true;
-    }
+  TOPICS.forEach(t => {
+    const el = document.getElementById("topic-" + t.id);
+    if (allOpen) el._open();
+    else { el.classList.remove("open"); el.querySelector(".topic-head").setAttribute("aria-expanded", "false"); }
   });
   if (allOpen) updateDismissBtn();
   e.currentTarget.innerHTML = allOpen ? "⬆ Collapse all" : "⬇ Expand all";
 });
 
-// Reset study progress (keeps the NEW baseline)
+// ---- Reset progress ----
 document.getElementById("reset").addEventListener("click", () => {
   if (confirm("Reset all studied progress? This can't be undone.")) {
-    state.checked = {}; save();
-    document.querySelectorAll(".item-cb").forEach(cb => cb.checked = false);
-    document.querySelectorAll(".study-item").forEach(l => l.classList.remove("done"));
-    document.querySelectorAll(".topic").forEach(el => {
-      const t = topicById[el.dataset.id];
-      updateTopicProgress(el, t);
-      updateMarkAllLabel(el, t);
-    });
-    updateOverall();
+    state.studied = {}; save();
+    TOPICS.forEach(t => refreshStudied(document.getElementById("topic-" + t.id), t));
+    updateOverall(); applyFilter();
+  }
+});
+
+// ---- Modal focus management ----
+let lastFocus = null;
+function openModalEl(m) {
+  lastFocus = document.activeElement;
+  m.removeAttribute("hidden");
+  const f = m.querySelector("button, [href], input, textarea, [tabindex]");
+  if (f) f.focus();
+  document.addEventListener("keydown", trapFocus);
+}
+function closeModalEl(m) {
+  m.setAttribute("hidden", "");
+  document.removeEventListener("keydown", trapFocus);
+  if (lastFocus && lastFocus.focus) lastFocus.focus();
+}
+function trapFocus(e) {
+  if (e.key !== "Tab") return;
+  const m = document.querySelector(".modal-overlay:not([hidden])");
+  if (!m) return;
+  const f = [...m.querySelectorAll('button, [href], input, textarea, [tabindex]')].filter(x => !x.disabled && x.offsetParent !== null);
+  if (!f.length) return;
+  const first = f[0], last = f[f.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+}
+
+// ---- Sync (export / import) ----
+const syncModal = document.getElementById("sync-modal");
+document.getElementById("open-sync").addEventListener("click", () => {
+  const payload = btoa(unescape(encodeURIComponent(JSON.stringify({ v: 1, studied: state.studied }))));
+  document.getElementById("export-code").value = payload;
+  document.getElementById("import-code").value = "";
+  document.getElementById("import-msg").textContent = "";
+  openModalEl(syncModal);
+});
+document.getElementById("sync-close").addEventListener("click", () => closeModalEl(syncModal));
+syncModal.addEventListener("click", e => { if (e.target === syncModal) closeModalEl(syncModal); });
+document.getElementById("copy-export").addEventListener("click", e => {
+  const ta = document.getElementById("export-code");
+  ta.select();
+  if (navigator.clipboard) navigator.clipboard.writeText(ta.value);
+  e.currentTarget.textContent = "Copied ✓";
+  setTimeout(() => { e.currentTarget.textContent = "Copy"; }, 1200);
+});
+document.getElementById("do-import").addEventListener("click", () => {
+  const msg = document.getElementById("import-msg");
+  try {
+    const raw = document.getElementById("import-code").value.trim();
+    if (!raw) { msg.textContent = "Paste a code first."; msg.className = "import-msg warn"; return; }
+    const data = JSON.parse(decodeURIComponent(escape(atob(raw))));
+    if (!data || typeof data.studied !== "object") throw new Error("bad");
+    let merged = 0;
+    Object.keys(data.studied).forEach(id => { if (topicById[id] && data.studied[id]) { state.studied[id] = true; merged++; } });
+    save();
+    TOPICS.forEach(t => refreshStudied(document.getElementById("topic-" + t.id), t));
+    updateOverall(); applyFilter();
+    msg.textContent = `Imported — ${merged} topic(s) merged into your progress.`;
+    msg.className = "import-msg ok";
+  } catch (_) {
+    msg.textContent = "That code did not look valid.";
+    msg.className = "import-msg warn";
   }
 });
 
 // ---- Version / What's new popup ----
-const SITE_VERSION = "1.2";
+const SITE_VERSION = "1.3";
 const CHANGELOG = [
+  { v: "1.3", date: "Jun 2026",
+    content: [
+      "Each topic now shows an estimated time and its prerequisites.",
+      "New Glossary of key terms in the Reference section."
+    ],
+    ui: [
+      "Search and filter topics — by level, what is left to study, or what is NEW.",
+      "Simpler progress: mark a whole topic as studied (per-concept checkboxes and the quiz are gone).",
+      "Per-level progress, a Continue button, export/import to sync across devices, and back-to-top.",
+      "Better keyboard and screen-reader support, plus a print-friendly layout."
+    ] },
   { v: "1.2", date: "Jun 2026",
     content: [
       "New path — RAG & Knowledge Grounding: answer from your help center instead of guessing.",
@@ -1158,8 +1245,8 @@ const CHANGELOG = [
     ] },
   { v: "1.1", date: "Jun 2026",
     content: [
-      "Every concept under What to study can now be ticked off as you learn it.",
-      "Each topic shows your progress (e.g. 5/9) and turns green when complete."
+      "Concepts could be ticked off individually as you learned them.",
+      "Each topic showed your progress and turned green when complete."
     ],
     ui: [
       "Automatic NEW badge on anything added since your last visit.",
@@ -1173,8 +1260,7 @@ const CHANGELOG = [
       "Dark / light theme, expandable topics, and progress saved in your browser."
     ] }
 ];
-
-const modal = document.getElementById("changelog-modal");
+const clModal = document.getElementById("changelog-modal");
 function renderChangelog() {
   document.getElementById("cl-version").textContent = "v" + SITE_VERSION;
   document.getElementById("changelog-body").innerHTML = CHANGELOG.map((e, i) => `
@@ -1184,18 +1270,21 @@ function renderChangelog() {
       ${e.ui && e.ui.length ? `<div class="cl-group ui"><span class="cl-tag">UI &amp; features</span><ul class="cl-list">${e.ui.map(c => `<li>${c}</li>`).join("")}</ul></div>` : ''}
     </div>`).join("");
 }
-function openModal() { renderChangelog(); modal.removeAttribute("hidden"); }
-function closeModal() {
-  modal.setAttribute("hidden", "");
+function openChangelog() { renderChangelog(); openModalEl(clModal); }
+function closeChangelog() {
+  closeModalEl(clModal);
   if (state.seenVersion !== SITE_VERSION) { state.seenVersion = SITE_VERSION; save(); }
 }
-document.getElementById("changelog-close").addEventListener("click", closeModal);
-document.getElementById("changelog-got").addEventListener("click", closeModal);
-document.getElementById("open-changelog").addEventListener("click", openModal);
-modal.addEventListener("click", e => { if (e.target === modal) closeModal(); });
-document.addEventListener("keydown", e => { if (e.key === "Escape" && !modal.hasAttribute("hidden")) closeModal(); });
-// Show automatically once per version (also on a brand-new visit)
-if (state.seenVersion !== SITE_VERSION) openModal();
+document.getElementById("changelog-close").addEventListener("click", closeChangelog);
+document.getElementById("changelog-got").addEventListener("click", closeChangelog);
+document.getElementById("open-changelog").addEventListener("click", openChangelog);
+clModal.addEventListener("click", e => { if (e.target === clModal) closeChangelog(); });
+document.addEventListener("keydown", e => {
+  if (e.key !== "Escape") return;
+  if (!syncModal.hasAttribute("hidden")) closeModalEl(syncModal);
+  else if (!clModal.hasAttribute("hidden")) closeChangelog();
+});
+if (state.seenVersion !== SITE_VERSION) openChangelog();
 </script>
 </body>
 </html>
