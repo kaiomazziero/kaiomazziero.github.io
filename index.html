@@ -142,6 +142,18 @@
   }
   .section-label::after { content: ""; flex: 1; height: 1px; background: var(--border); }
 
+  /* Start Here — PDF guides */
+  .guides-intro { color: var(--text-dim); font-size: 14px; line-height: 1.6; margin: 0 0 18px; max-width: 760px; }
+  .guide-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  @media (max-width: 760px) { .guide-grid { grid-template-columns: 1fr; } }
+  .guide-card { display: flex; gap: 14px; align-items: flex-start; text-decoration: none; background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 18px; transition: border-color .15s, transform .15s, background .15s; }
+  .guide-card:hover { border-color: var(--accent); transform: translateY(-2px); background: var(--bg-hover); }
+  .gc-icon { width: 40px; height: 40px; flex-shrink: 0; border-radius: 10px; background: rgba(110,231,183,.12); border: 1px solid rgba(110,231,183,.3); display: grid; place-items: center; font-size: 19px; }
+  .gc-title { font-family: var(--display); font-size: 15.5px; font-weight: 600; color: var(--text); margin-bottom: 5px; }
+  .gc-desc { font-size: 13px; color: var(--text-dim); line-height: 1.5; margin-bottom: 9px; }
+  .gc-meta { font-family: var(--mono); font-size: 10.5px; letter-spacing: .04em; text-transform: uppercase; color: var(--text-faint); }
+  .guide-card:hover .gc-meta { color: var(--accent); }
+
   /* Topic card */
   .topic {
     background: var(--bg-card);
@@ -391,6 +403,35 @@
 </header>
 
 <main class="wrap">
+  <div class="section-label">Start Here</div>
+  <p class="guides-intro">New here? Start with these plain-language guides — no technical background needed. Read them before, or alongside, the roadmap below.</p>
+  <div class="guide-grid">
+    <a class="guide-card" href="AI_Fundamentals.pdf" target="_blank" rel="noopener">
+      <div class="gc-icon">📄</div>
+      <div>
+        <div class="gc-title">AI Fundamentals</div>
+        <div class="gc-desc">What modern AI really is — from machine learning and neural nets to LLMs, their limits, and how to use them well.</div>
+        <div class="gc-meta">PDF · 8 pages · open ↗</div>
+      </div>
+    </a>
+    <a class="guide-card" href="AI_Agents.pdf" target="_blank" rel="noopener">
+      <div class="gc-icon">📄</div>
+      <div>
+        <div class="gc-title">AI Agents</div>
+        <div class="gc-desc">What agents are, the agent loop, how they remember, levels of autonomy, and how to keep them under control.</div>
+        <div class="gc-meta">PDF · 9 pages · open ↗</div>
+      </div>
+    </a>
+    <a class="guide-card" href="Agent_Orchestration.pdf" target="_blank" rel="noopener">
+      <div class="gc-icon">📄</div>
+      <div>
+        <div class="gc-title">Agent Orchestration</div>
+        <div class="gc-desc">How multiple agents team up — coordination patterns, the compounding-error math, governance, and when not to.</div>
+        <div class="gc-meta">PDF · 9 pages · open ↗</div>
+      </div>
+    </a>
+  </div>
+
   <div class="section-label">The Path</div>
   <div class="controls">
     <div class="search-box"><span class="si">🔍</span><input type="text" id="search" placeholder="Search topics and concepts…" aria-label="Search topics and concepts"></div>
@@ -1284,7 +1325,8 @@ document.addEventListener("keydown", e => {
   if (!syncModal.hasAttribute("hidden")) closeModalEl(syncModal);
   else if (!clModal.hasAttribute("hidden")) closeChangelog();
 });
-if (state.seenVersion !== SITE_VERSION) openChangelog();
+// Always show the What's-new popup on page load
+openChangelog();
 </script>
 </body>
 </html>
